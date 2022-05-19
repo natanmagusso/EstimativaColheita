@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EstimativaColheita.Models
 {
     /// <summary>
-    /// Classe modelo para gerenciamento dos dados dos contratos.
+    /// Classe modelo para gerenciamento dos dados dos encarregados.
     /// </summary>
-    public class ContratoModel
+    public class EncarregadoModel
     {
         /// <summary>
         /// Campo id do contrato.
@@ -18,23 +18,17 @@ namespace EstimativaColheita.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Campo código interno do contrato.
+        /// Campo código interno do encarregado.
         /// </summary>        
         [Range(1, 99999)]
         [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
-        /// Campo propriedade do contrato.
+        /// Campo nome do encarregado.
         /// </summary>
-        [Required(ErrorMessage = "O 'Nome da propriedade' é de preenchimento obrigatório")]
-        public string Propriedade { get; set; }
-
-        /// <summary>
-        /// Campo titular do contrato.
-        /// </summary>
-        [Required(ErrorMessage = "O 'Nome do titular' é de preenchimento obrigatório")]
-        public string Titular { get; set; }
+        [Required(ErrorMessage = "O 'Nome' é de preenchimento obrigatório")]
+        public string Nome { get; set; }
 
         /// <summary>
         /// Campo para verificar se o registro está ativo ou não.
@@ -42,9 +36,14 @@ namespace EstimativaColheita.Models
         public bool Ativo { get; set; }
 
         /// <summary>
-        /// Classe coleção dos talhões.
+        /// Campo id do fiscal de campo.
         /// </summary>
-        public List<TalhaoModel> Talhoes { get; set; }
+        [ForeignKey("IdFiscalCampo")]
+        public int IdFiscalCampo { get; set; }
+        /// <summary>
+        /// Classe fiscal de campo.
+        /// </summary>
+        public FiscalCampoModel FiscalCampo { get; set; }
 
         /// <summary>
         /// Classe coleção das estimativas.
@@ -57,24 +56,28 @@ namespace EstimativaColheita.Models
         public List<ColheitaRealizadaModel> ColheitasRealizadas { get; set; }
 
         /// <summary>
-        /// Campo descrição completa do contrato.
+        /// Campo descrição completa do encarregado.
         /// </summary>
         [NotMapped]
-        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + Propriedade; }}
+        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + Nome; } }
     }
 
     /// <summary>
     /// Classe modelo para configuração da tabela no banco de dados.
     /// </summary>
-    public class ContratoConfiguration : IEntityTypeConfiguration<ContratoModel>
+    public class EncarregadoConfiguration : IEntityTypeConfiguration<EncarregadoModel>
     {
-        public void Configure(EntityTypeBuilder<ContratoModel> builder)
+        public void Configure(EntityTypeBuilder<EncarregadoModel> builder)
         {
-            builder.ToTable("Contratos");
+            builder.ToTable("Encarregados");
             builder.Property(con => con.CodigoInterno).HasColumnType("int").IsRequired();
-            builder.Property(con => con.Propriedade).HasColumnType("varchar(200)").IsRequired();
-            builder.Property(con => con.Titular).HasColumnType("varchar(200)").IsRequired();
+            builder.Property(con => con.Nome).HasColumnType("varchar(200)").IsRequired();
             builder.Property(con => con.Ativo).HasColumnType("bit");
+
+            builder.HasOne<FiscalCampoModel>(con => con.FiscalCampo)
+                .WithMany(fis => fis.Encarregados)
+                .HasForeignKey(con => con.IdFiscalCampo)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

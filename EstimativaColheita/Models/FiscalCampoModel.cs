@@ -20,47 +20,37 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo código interno do fiscal de campo.
         /// </summary>
-        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]
-        [Display(Name = "Código")]
-        [Range(1,99)]
+        [Range(1, 99)]
+        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]      
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo nome do fiscal de campo.
         /// </summary>
         [Required(ErrorMessage = "O 'Nome' é de preenchimento obrigatório")]
-        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         /// <summary>
         /// Campo apelido do fiscal de campo.
         /// </summary>
         [Required(ErrorMessage = "O 'Apelido' é de preenchimento obrigatório")]
-        [Display(Name = "Apelido")]
         public string Apelido { get; set; }
 
         /// <summary>
         /// Campo para verificar se o registro está ativo ou não.
         /// </summary>
-        [Display(Name = "Ativo")]
         public bool Ativo { get; set; }
 
         /// <summary>
-        /// Classe coleção das estimativas.
+        /// Classe coleção dos encarregados.
         /// </summary>
-        public List<ContratoModel> Contratos { get; set; }
+        public List<EncarregadoModel> Encarregados { get; set; }
 
         /// <summary>
         /// Campo descrição completa do fiscal de campo.
         /// </summary>
         [NotMapped]
-        public string DescricaoCompleta
-        {
-            get
-            {
-                return CodigoInterno.ToString() + " | " + Apelido;
-            }
-        }
+        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + Apelido; }}
     }
 
     /// <summary>

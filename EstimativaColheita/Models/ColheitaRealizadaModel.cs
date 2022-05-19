@@ -20,40 +20,33 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo data de lançamento da colheita realizada.
         /// </summary>
-        [Display(Name = "Data colheita")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataLancamento { get; set; }
 
         /// <summary>
         /// Campo quantidade de caixas.
         /// </summary>
-        [Required(ErrorMessage = "A 'Quantidade de caixas' é de preenchimento obrigatório")]
-        [Display(Name = "Caixas")]
         [Range(1, 999)]
+        [Required(ErrorMessage = "A 'Quantidade de caixas' é de preenchimento obrigatório")]        
         public int Caixas { get; set; }
 
         /// <summary>
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
-        [Display(Name = "Contrato")]
         public int IdContrato { get; set; }
         /// <summary>
         /// Classe contrato.
         /// </summary>
-        [Display(Name = "Contrato")]
         public ContratoModel Contrato { get; set; }
 
         /// <summary>
         /// Campo id do talhão.
         /// </summary>
         [ForeignKey("IdTalhao")]
-        [Display(Name = "Talhão")]
         public int IdTalhao { get; set; }
         /// <summary>
         /// Classe talhão.
         /// </summary>
-        [Display(Name = "Talhão")]
         public TalhaoModel Talhao { get; set; }
     }
 

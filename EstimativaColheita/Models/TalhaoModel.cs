@@ -20,53 +20,45 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo código interno do talhão.
         /// </summary>
-        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]
-        [Display(Name = "Código")]
         [Range(1, 9999)]
+        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]        
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo ano do plantio.
         /// </summary>
         [Required(ErrorMessage = "O 'Ano do plantio' é de preenchimento obrigatório")]
-        [Display(Name = "Ano plantio")]
         public int AnoPlantio { get; set; }
 
         /// <summary>
         /// Campo quantidade de pés.
         /// </summary>
         [Required(ErrorMessage = "A 'Quantidade de pés' é de preenchimento obrigatório")]
-        [Display(Name = "Qtde pés")]
         public int QuantidadePes { get; set; }
 
         /// <summary>
         /// Campo para verificar se o registro está ativo ou não.
         /// </summary>
-        [Display(Name = "Ativo")]
         public bool Ativo { get; set; }
 
         /// <summary>
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
-        [Display(Name = "Contrato")]
         public int IdContrato { get; set; }
         /// <summary>
         /// Classe contrato.
         /// </summary>
-        [Display(Name = "Contrato")]
         public ContratoModel Contrato { get; set; }
 
         /// <summary>
         /// Campo id da variedade.
         /// </summary>
         [ForeignKey("IdVariedade")]
-        [Display(Name = "Variedade")]
         public int IdVariedade { get; set; }
         /// <summary>
         /// Classe variedade.
         /// </summary>
-        [Display(Name = "Variedade")]
         public VariedadeModel Variedade { get; set; }
 
         /// <summary>
@@ -83,13 +75,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do talhão.
         /// </summary>
         [NotMapped]
-        public string DescricaoCompleta
-        {
-            get
-            {
-                return CodigoInterno.ToString() + " | " + AnoPlantio.ToString();
-            }
-        }
+        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + AnoPlantio.ToString(); }}
     }
 
     /// <summary>

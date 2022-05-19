@@ -20,22 +20,19 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo código interno da variedade.
         /// </summary>
-        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]
-        [Display(Name = "Código")]
         [Range(1, 9999)]
+        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]        
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo descrição da variedade.
         /// </summary>
         [Required(ErrorMessage = "A 'Descrição' é de preenchimento obrigatório")]
-        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         /// <summary>
         /// Campo para verificar se o registro está ativo ou não.
         /// </summary>
-        [Display(Name = "Ativo")]
         public bool Ativo { get; set; }
 
         /// <summary>
@@ -47,13 +44,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa da variedade.
         /// </summary>
         [NotMapped]
-        public string DescricaoCompleta
-        {
-            get
-            {
-                return CodigoInterno.ToString() + " | " + Descricao;
-            }
-        }
+        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + Descricao; }}
     }
 
     /// <summary>

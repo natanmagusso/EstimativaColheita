@@ -20,68 +20,57 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo data de lançamento da estimativa.
         /// </summary>
-        [Display(Name = "Data de lançamento")]
         public DateTime DataLancamento { get; set; }
 
         /// <summary>
         /// Campo quantidade da fruta.
         /// </summary>
         [Required(ErrorMessage = "A 'Quantidade de caixas' é de preenchimento obrigatório")]
-        [Display(Name = "Caixas")]
         public int Caixas { get; set; }
 
         /// <summary>
         /// Campo data de alteração da estimativa.
         /// </summary>
-        [Display(Name = "Data de alteração")]
         public DateTime DataAlteracao { get; set; }
 
         /// <summary>
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
-        [Display(Name = "Contrato")]
         public int IdContrato { get; set; }
         /// <summary>
         /// Classe contrato.
         /// </summary>
-        [Display(Name = "Contrato")]
         public ContratoModel Contrato { get; set; }
 
         /// <summary>
         /// Campo id do talhão.
         /// </summary>
         [ForeignKey("IdTalhao")]
-        [Display(Name = "Talhão")]
         public int IdTalhao { get; set; }
         /// <summary>
         /// Classe talhão.
         /// </summary>
-        [Display(Name = "Talhão")]
         public TalhaoModel Talhao { get; set; }
 
         /// <summary>
         /// Campo id do motivo de alteração.
         /// </summary>
         [ForeignKey("IdMotivoAlteracao")]
-        [Display(Name = "Motivo de alteração")]
         public int IdMotivoAlteracao { get; set; }
         /// <summary>
         /// Classe motivo de alteração.
         /// </summary>
-        [Display(Name = "Motivo de alteração")]
         public MotivoAlteracaoModel MotivoAlteracao { get; set; }
 
         /// <summary>
         /// Campo id do tipo de lançamento.
         /// </summary>
         [ForeignKey("IdTipoLancamento")]
-        [Display(Name = "Tipo de lançamento")]
         public int IdTipoLancamento { get; set; }
         /// <summary>
         /// Classe tipo de lançamento.
         /// </summary>
-        [Display(Name = "Tipo de lançamento")]
         public TipoLancamentoModel TipoLancamento { get; set; }
     }
 

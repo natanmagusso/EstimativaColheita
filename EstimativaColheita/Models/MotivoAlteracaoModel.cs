@@ -21,13 +21,11 @@ namespace EstimativaColheita.Models
         /// Campo descrição do motivo de alteração.
         /// </summary>
         [Required(ErrorMessage = "A 'Descrição' é de preenchimento obrigatório")]
-        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         /// <summary>
         /// Campo para verificar se o registro está ativo ou não.
         /// </summary>
-        [Display(Name = "Ativo")]
         public bool Ativo { get; set; }
 
         /// <summary>

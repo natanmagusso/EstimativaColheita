@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 // Registrar os serviçoes dos repositoirios
 builder.Services.AddTransient<IColheitaRealizada, ColheitaRealizadaService>();
 builder.Services.AddTransient<IContrato, ContratoService>();
+builder.Services.AddTransient<IEncarregado, EncarregadoService>();
 builder.Services.AddTransient<IEstimativaColheita, EstimativaColheitaService>();
 builder.Services.AddTransient<IFiscalCampo, FiscalCampoService>();
 builder.Services.AddTransient<IMotivoAlteracao, MotivoAlteracaoService>();

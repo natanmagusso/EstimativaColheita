@@ -11,6 +11,7 @@ namespace EstimativaColheita.Persistence
         {
             modelBuilder.ApplyConfiguration(new ColheitaRealizadaConfiguration());
             modelBuilder.ApplyConfiguration(new ContratoConfiguration());
+            modelBuilder.ApplyConfiguration(new EncarregadoConfiguration());
             modelBuilder.ApplyConfiguration(new EstimativaColheitaConfiguration());
             modelBuilder.ApplyConfiguration(new FiscalCampoConfiguration());
             modelBuilder.ApplyConfiguration(new MotivoAlteracaoConfiguration());
@@ -35,6 +36,7 @@ namespace EstimativaColheita.Persistence
 
         public DbSet<ColheitaRealizadaModel> ColheitasRealizadas { get; set; }
         public DbSet<ContratoModel> Contratos { get; set; }
+        public DbSet<EncarregadoModel> Encarregados { get; set; }
         public DbSet<EstimativaColheitaModel> EstimativasColheita { get; set; }
         public DbSet<FiscalCampoModel> FiscaisCampo { get; set; }
         public DbSet<MotivoAlteracaoModel> MotivosAlteracoes { get; set; }

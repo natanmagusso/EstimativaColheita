@@ -1,16 +1,16 @@
-﻿@model EstimativaColheita.Models.ContratoModel
+﻿@model EstimativaColheita.Models.EncarregadoModel
 
 @{
-    ViewData["Title"] = "Contratos";
+    ViewData["Title"] = "Encarregados";
 }
 
 <div class="card">
     <div class="card-header">
-        @if (Model.Id == 0) { <text>Adicionar registro</text> } 
+        @if (Model.Id == 0) { <text>Adicionar registro</text> }
         else { <text>Editar registro</text> }
     </div>
     <div class="card-body">
-        <form asp-action="CreateOrEdit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id"/>
             <div class="form-group">
@@ -19,14 +19,13 @@
                 <span asp-validation-for="CodigoInterno" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Propriedade" class="control-label"></label>
-                <input asp-for="Propriedade" class="form-control" />
-                <span asp-validation-for="Propriedade" class="text-danger"></span>
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Titular" class="control-label"></label>
-                <input asp-for="Titular" class="form-control" />
-                <span asp-validation-for="Titular" class="text-danger"></span>
+                <label asp-for="IdFiscalCampo" class="control-label"></label>
+                <select asp-for="IdFiscalCampo" class="form-select" asp-items="ViewBag.IdFiscalCampo"></select>
             </div>
             <hr />
             <div class="btn-group">

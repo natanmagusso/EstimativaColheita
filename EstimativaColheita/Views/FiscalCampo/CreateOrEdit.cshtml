@@ -1,12 +1,13 @@
 ﻿@model EstimativaColheita.Models.FiscalCampoModel
 
 @{
-    ViewData["Title"] = "Adicionar/Editar";
+    ViewData["Title"] = "Coordenadores/Supervisores";
 }
 
 <div class="card">
     <div class="card-header">
-        Adicionar/Editar registros
+        @if (Model.Id == 0) { <text>Adicionar registro</text> } 
+        else { <text>Editar registro</text> }
     </div>
     <div class="card-body">
         <form asp-action="CreateOrEdit">

@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EstimativaColheita.Models;
 using EstimativaColheita.Repositories.Interfaces;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EstimativaColheita.Controllers
 {
     public class ContratoController : Controller
     {
         private readonly IContrato _contrato;
-        private readonly IFiscalCampo _fiscalCampo;
 
-        public ContratoController(IContrato contrato, IFiscalCampo fiscalCampo)
+        public ContratoController(IContrato contrato)
         {
             _contrato = contrato;
-            _fiscalCampo = fiscalCampo;
         }
 
         public async Task<IActionResult> Index()
@@ -22,7 +19,6 @@ namespace EstimativaColheita.Controllers
         }
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-
             if (id == 0)
                 return View(new ContratoModel());
             else

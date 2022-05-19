@@ -1,22 +1,22 @@
-﻿@model IEnumerable<EstimativaColheita.Models.ContratoModel>
+﻿@model IEnumerable<EstimativaColheita.Models.EncarregadoModel>
 
 @{
-    ViewData["Title"] = "Contratos";
+    ViewData["Title"] = "Encarregados";
 }
 
 <div class="card">
     <div class="card-header">
-        Contratos
+        Encarregados
     </div>
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
         <hr />
-        <table class="table table-houver">
+        <table class="table">
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.CodigoInterno)</th>
-                    <th>@Html.DisplayNameFor(model => model.Propriedade)</th>
-                    <th>@Html.DisplayNameFor(model => model.Titular)</th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.FiscalCampo)</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -25,8 +25,8 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.CodigoInterno)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Propriedade)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Titular)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FiscalCampo.DescricaoCompleta)</td>
                         <td>
                             <div class="btn-group">
                                 @if (item.Ativo == true)

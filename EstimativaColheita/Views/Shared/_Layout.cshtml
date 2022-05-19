@@ -12,22 +12,29 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <!--<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EstimativaColheita</a>-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <!-- <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Desenvolvedor</a> -->
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Information">Sobre</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownCAD" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCAD">
+                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Contrato" asp-action="Index">Contratos</a><li>
+                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="FiscalCampo" asp-action="Index">Coordenadores/Supervisores</a><li>
+                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Talhao" asp-action="Index">Talhões</a><li>
+                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Variedade" asp-action="Index">Variedades</a><li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ColheitaRealizada" asp-action="Index">Apontamento</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownCOL" role="button" data-bs-toggle="dropdown" aria-expanded="false">Colheitas</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCOL">
+                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="ColheitaRealizada" asp-action="Index">Apontamento</a><li>
+                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="EtimativaColheita" asp-action="Index">Estimativa de colheita</a><li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -40,15 +47,10 @@
         </main>
     </div>
 
-    <!-- <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - EstimativaColheita - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> -->
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Todos os direitos reservados.
+            &copy; 2022 - Todos os direitos reservados - Natan Piassi Magusso |
+            <a asp-area="" asp-controller="Home" asp-action="Information">Sobre</a>
         </div>
     </footer>
 

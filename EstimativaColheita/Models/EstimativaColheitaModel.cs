@@ -34,6 +34,16 @@ namespace EstimativaColheita.Models
         public DateTime DataAlteracao { get; set; }
 
         /// <summary>
+        /// Campo id do encarregado.
+        /// </summary>
+        [ForeignKey("IdEncarregado")]
+        public int IdEncarregado { get; set; }
+        /// <summary>
+        /// Classe encarregado.
+        /// </summary>
+        public EncarregadoModel Encarregado { get; set; }
+
+        /// <summary>
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
@@ -83,6 +93,11 @@ namespace EstimativaColheita.Models
         {
             builder.ToTable("EstimativasColheita");
             builder.Property(est => est.Caixas).HasColumnType("int").IsRequired();
+
+            builder.HasOne<EncarregadoModel>(est => est.Encarregado)
+                .WithMany(enc => enc.Estimativas)
+                .HasForeignKey(est => est.IdEncarregado)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne<ContratoModel>(est => est.Contrato)
                 .WithMany(con => con.Estimativas)

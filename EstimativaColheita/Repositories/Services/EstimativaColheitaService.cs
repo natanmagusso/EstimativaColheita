@@ -31,10 +31,11 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .EstimativasColheita
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(tal => tal.Talhao)
-                .Include(mot => mot.MotivoAlteracao)
-                .Include(tip => tip.TipoLancamento)
+                .Include(est => est.Encarregado)
+                .Include(est => est.Contrato)
+                .Include(est => est.Talhao)
+                .Include(est => est.MotivoAlteracao)
+                .Include(est => est.TipoLancamento)
                 .OrderBy(est => est.DataLancamento)
                 .ToListAsync();
         }
@@ -48,10 +49,11 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .EstimativasColheita
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(tal => tal.Talhao)
-                .Include(mot => mot.MotivoAlteracao)
-                .Include(tip => tip.TipoLancamento)
+                .Include(est => est.Encarregado)
+                .Include(est => est.Contrato)
+                .Include(est => est.Talhao)
+                .Include(est => est.MotivoAlteracao)
+                .Include(est => est.TipoLancamento)
                 .FirstOrDefaultAsync(est => est.Id == id);
         }
 
@@ -63,6 +65,7 @@ namespace EstimativaColheita.Repositories.Services
         {
             var inserir = new EstimativaColheitaModel()
             {
+                IdEncarregado = request.IdEncarregado,
                 IdContrato = request.IdContrato,
                 IdTalhao = request.IdTalhao,
                 IdMotivoAlteracao = request.IdMotivoAlteracao,

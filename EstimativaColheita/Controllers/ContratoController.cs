@@ -22,7 +22,6 @@ namespace EstimativaColheita.Controllers
         }
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
-            ViewData["IdFiscalCampo"] = new SelectList(_fiscalCampo.ConsultarFiscaisCampoAtivosAsync(), "Id", "DescricaoCompleta");
 
             if (id == 0)
                 return View(new ContratoModel());
@@ -31,7 +30,7 @@ namespace EstimativaColheita.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrEdit([Bind("Id,CodigoInterno,Propriedade,Titular,Ativo,IdFiscalCampo")] ContratoModel contrato)
+        public async Task<IActionResult> CreateOrEdit([Bind("Id,CodigoInterno,Propriedade,Titular,Ativo")] ContratoModel contrato)
         {
             if (ModelState.IsValid)
             {
@@ -42,8 +41,6 @@ namespace EstimativaColheita.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["IdFiscalCampo"] = new SelectList(_fiscalCampo.ConsultarFiscaisCampoAtivosAsync(), "Id", "DescricaoCompleta", contrato.IdFiscalCampo);
             return View(contrato);
         }
         public async Task<IActionResult> Disable(int id)

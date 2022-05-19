@@ -31,7 +31,6 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Contratos
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
                 .OrderBy(con => con.CodigoInterno)
                 .ToListAsync();
         }
@@ -44,7 +43,6 @@ namespace EstimativaColheita.Repositories.Services
             return _appContext
                 .Contratos
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
                 .Where(con => con.Ativo == true)
                 .OrderBy(con => con.CodigoInterno);
         }
@@ -58,7 +56,6 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Contratos
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
                 .FirstOrDefaultAsync(con => con.Id == id);
         }
 
@@ -71,7 +68,6 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Contratos
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
                 .FirstOrDefaultAsync(con => con.CodigoInterno == codigoInterno);
         }
 
@@ -83,7 +79,6 @@ namespace EstimativaColheita.Repositories.Services
         {
             var inserir = new ContratoModel()
             {
-                IdFiscalCampo = request.IdFiscalCampo,
                 CodigoInterno = request.CodigoInterno,
                 Propriedade = request.Propriedade.ToUpper(),
                 Titular = request.Titular.ToUpper(),
@@ -103,7 +98,6 @@ namespace EstimativaColheita.Repositories.Services
         public async Task AlterarContratoAsync(ContratoModel request, int id)
         {
             var alterar = await _appContext.Contratos.FindAsync(id);
-            alterar.IdFiscalCampo = request.IdFiscalCampo;
             alterar.CodigoInterno = request.CodigoInterno;
             alterar.Propriedade = request.Propriedade.ToUpper();
             alterar.Titular = request.Titular.ToUpper();

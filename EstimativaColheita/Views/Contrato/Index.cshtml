@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EstimativaColheita.Models.ContratoModel>
+
+@{
+    ViewData["Title"] = "Contratos";
+}
+
+<div class="card">
+    <div class="card-header">
+        Contratos
+    </div>
+    <div class="card-body">
+        <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
+        <hr />
+        <table class="table table-houver">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CodigoInterno)</th>
+                    <th>@Html.DisplayNameFor(model => model.Propriedade)</th>
+                    <th>@Html.DisplayNameFor(model => model.Titular)</th>
+                    <th>@Html.DisplayNameFor(model => model.FiscalCampo)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CodigoInterno)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Propriedade)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Titular)</td>                        
+                        <td>@Html.DisplayFor(modelItem => item.FiscalCampo.DescricaoCompleta)</td>
+                        <td>
+                            <div class="btn-group">
+                                @if (item.Ativo == true)
+                                {
+                                    <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
+                                    <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
+                                    <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                                }                                
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

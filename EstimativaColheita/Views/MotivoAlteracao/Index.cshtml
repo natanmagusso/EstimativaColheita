@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EstimativaColheita.Models.MotivoAlteracaoModel>
+
+@{
+    ViewData["Title"] = "Motivos de alterações";
+}
+
+<div class="card">
+    <div class="card-header">
+        Motivos de alteração
+    </div>
+    <div class="card-body">
+        <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
+        <hr />
+        <table class="table table-houver">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                        <td>
+                            <div class="btn-group">
+                                @if (item.Ativo == true)
+                                {
+                                    <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
+                                    <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
+                                    <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                                }                                
+                            </div>                
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

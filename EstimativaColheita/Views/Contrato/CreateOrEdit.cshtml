@@ -1,0 +1,46 @@
+﻿@model EstimativaColheita.Models.ContratoModel
+
+@{
+    ViewData["Title"] = "Adicionar/Editar";
+}
+
+<div class="card">
+    <div class="card-header">
+        Adicionar/Editar registros
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id"/>
+            <div class="form-group">
+                <label asp-for="CodigoInterno" class="control-label"></label>
+                <input asp-for="CodigoInterno" class="form-control" />
+                <span asp-validation-for="CodigoInterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Propriedade" class="control-label"></label>
+                <input asp-for="Propriedade" class="form-control" />
+                <span asp-validation-for="Propriedade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titular" class="control-label"></label>
+                <input asp-for="Titular" class="form-control" />
+                <span asp-validation-for="Titular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdFiscalCampo" class="control-label"></label>
+                <select asp-for="IdFiscalCampo" class ="form-control" asp-items="ViewBag.IdFiscalCampo"></select>
+            </div>
+            <hr />
+            <div class="btn-group">
+                <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

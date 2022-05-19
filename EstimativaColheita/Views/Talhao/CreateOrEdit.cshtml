@@ -1,0 +1,50 @@
+﻿@model EstimativaColheita.Models.TalhaoModel
+
+@{
+    ViewData["Title"] = "Adicionar/Editar";
+}
+
+<div class="card">
+    <div class="card-header">
+        Adicionar/Editar registros
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id"/>
+            <div class="form-group">
+                <label asp-for="CodigoInterno" class="control-label"></label>
+                <input asp-for="CodigoInterno" class="form-control" />
+                <span asp-validation-for="CodigoInterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnoPlantio" class="control-label"></label>
+                <input asp-for="AnoPlantio" class="form-control" />
+                <span asp-validation-for="AnoPlantio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantidadePes" class="control-label"></label>
+                <input asp-for="QuantidadePes" class="form-control" />
+                <span asp-validation-for="QuantidadePes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdContrato" class="control-label"></label>
+                <select asp-for="IdContrato" class ="form-control" asp-items="ViewBag.IdContrato"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdVariedade" class="control-label"></label>
+                <select asp-for="IdVariedade" class ="form-control" asp-items="ViewBag.IdVariedade"></select>
+            </div>
+            <hr />
+            <div class="btn-group">
+                <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

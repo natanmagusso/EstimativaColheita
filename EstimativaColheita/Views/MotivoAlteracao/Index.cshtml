@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<EstimativaColheita.Models.MotivoAlteracaoModel>
 
 @{
-    ViewData["Title"] = "Motivos de alterações";
+    ViewData["Title"] = "Motivos";
 }
 
-<div class="card">
+<div class="card border-secondary mb-3">
     <div class="card-header">
-        Motivos de alteração
+        <h6 card-title>Lista de motivos de alteração</h6>
     </div>
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
         <hr />
-        <table class="table table-houver">
+        <table class="table table-sm table-hover">
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.Descricao)</th>

@@ -1,77 +1,47 @@
 ﻿@model IEnumerable<EstimativaColheita.Models.EstimativaColheitaModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Estimativa";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataLancamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Caixas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAlteracao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Encarregado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contrato)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Talhao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotivoAlteracao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoLancamento)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataLancamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Caixas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAlteracao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Encarregado.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contrato.Propriedade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Talhao.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotivoAlteracao.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoLancamento.Descricao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card border-secondary mb-3">
+    <div class="card-header">
+        <h6 card-title>Lista de estimativas de colheita</h6>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
+        <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="MotivoAlteracao" asp-action="Index">Motivos de alteração</a>        
+        <hr />
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DataLancamento)</th>
+                    <th>@Html.DisplayNameFor(model => model.Caixas)</th>
+                    <th>@Html.DisplayNameFor(model => model.DataAlteracao)</th>
+                    <th>@Html.DisplayNameFor(model => model.Encarregado)</th>
+                    <th>@Html.DisplayNameFor(model => model.Contrato)</th>
+                    <th>@Html.DisplayNameFor(model => model.Talhao)</th>
+                    <th>@Html.DisplayNameFor(model => model.MotivoAlteracao)</th>
+                    <th>@Html.DisplayNameFor(model => model.TipoLancamento)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Caixas)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataAlteracao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Encarregado.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Contrato.Propriedade)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Talhao.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MotivoAlteracao.Descricao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TipoLancamento.Descricao)</td>
+                        <td><a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

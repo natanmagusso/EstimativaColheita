@@ -5,10 +5,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EstimativaColheita.Migrations
 {
-    public partial class InicialCreate : Migration
+    public partial class CreateInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Contratos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodigoInterno = table.Column<int>(type: "int", nullable: false),
+                    Propriedade = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Titular = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contratos", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "FiscaisCampo",
                 columns: table => new
@@ -68,22 +84,21 @@ namespace EstimativaColheita.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contratos",
+                name: "Encarregados",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CodigoInterno = table.Column<int>(type: "int", nullable: false),
-                    Propriedade = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Titular = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
                     IdFiscalCampo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contratos", x => x.Id);
+                    table.PrimaryKey("PK_Encarregados", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contratos_FiscaisCampo_IdFiscalCampo",
+                        name: "FK_Encarregados_FiscaisCampo_IdFiscalCampo",
                         column: x => x.IdFiscalCampo,
                         principalTable: "FiscaisCampo",
                         principalColumn: "Id",
@@ -129,7 +144,8 @@ namespace EstimativaColheita.Migrations
                     DataLancamento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Caixas = table.Column<int>(type: "int", nullable: false),
                     IdContrato = table.Column<int>(type: "int", nullable: false),
-                    IdTalhao = table.Column<int>(type: "int", nullable: false)
+                    IdTalhao = table.Column<int>(type: "int", nullable: false),
+                    EncarregadoModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -140,6 +156,11 @@ namespace EstimativaColheita.Migrations
                         principalTable: "Contratos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ColheitasRealizadas_Encarregados_EncarregadoModelId",
+                        column: x => x.EncarregadoModelId,
+                        principalTable: "Encarregados",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ColheitasRealizadas_Talhoes_IdTalhao",
                         column: x => x.IdTalhao,
@@ -157,6 +178,7 @@ namespace EstimativaColheita.Migrations
                     DataLancamento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Caixas = table.Column<int>(type: "int", nullable: false),
                     DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdEncarregado = table.Column<int>(type: "int", nullable: false),
                     IdContrato = table.Column<int>(type: "int", nullable: false),
                     IdTalhao = table.Column<int>(type: "int", nullable: false),
                     IdMotivoAlteracao = table.Column<int>(type: "int", nullable: false),
@@ -169,6 +191,12 @@ namespace EstimativaColheita.Migrations
                         name: "FK_EstimativasColheita_Contratos_IdContrato",
                         column: x => x.IdContrato,
                         principalTable: "Contratos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EstimativasColheita_Encarregados_IdEncarregado",
+                        column: x => x.IdEncarregado,
+                        principalTable: "Encarregados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -202,6 +230,11 @@ namespace EstimativaColheita.Migrations
                 values: new object[] { 2, "COLHIDO" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ColheitasRealizadas_EncarregadoModelId",
+                table: "ColheitasRealizadas",
+                column: "EncarregadoModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ColheitasRealizadas_IdContrato",
                 table: "ColheitasRealizadas",
                 column: "IdContrato");
@@ -212,14 +245,19 @@ namespace EstimativaColheita.Migrations
                 column: "IdTalhao");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contratos_IdFiscalCampo",
-                table: "Contratos",
+                name: "IX_Encarregados_IdFiscalCampo",
+                table: "Encarregados",
                 column: "IdFiscalCampo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EstimativasColheita_IdContrato",
                 table: "EstimativasColheita",
                 column: "IdContrato");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EstimativasColheita_IdEncarregado",
+                table: "EstimativasColheita",
+                column: "IdEncarregado");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EstimativasColheita_IdMotivoAlteracao",
@@ -256,6 +294,9 @@ namespace EstimativaColheita.Migrations
                 name: "EstimativasColheita");
 
             migrationBuilder.DropTable(
+                name: "Encarregados");
+
+            migrationBuilder.DropTable(
                 name: "MotivosAlteracoes");
 
             migrationBuilder.DropTable(
@@ -265,13 +306,13 @@ namespace EstimativaColheita.Migrations
                 name: "TiposLancamento");
 
             migrationBuilder.DropTable(
+                name: "FiscaisCampo");
+
+            migrationBuilder.DropTable(
                 name: "Contratos");
 
             migrationBuilder.DropTable(
                 name: "Variedades");
-
-            migrationBuilder.DropTable(
-                name: "FiscaisCampo");
         }
     }
 }

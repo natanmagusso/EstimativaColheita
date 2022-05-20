@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstimativaColheita.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220517194128_InicialCreate")]
-    partial class InicialCreate
+    [Migration("20220520001554_CreateInicial")]
+    partial class CreateInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,9 @@ namespace EstimativaColheita.Migrations
                     b.Property<DateTime>("DataLancamento")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EncarregadoModelId")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdContrato")
                         .HasColumnType("int");
 
@@ -45,6 +48,8 @@ namespace EstimativaColheita.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EncarregadoModelId");
 
                     b.HasIndex("IdContrato");
 
@@ -67,9 +72,6 @@ namespace EstimativaColheita.Migrations
                     b.Property<int>("CodigoInterno")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdFiscalCampo")
-                        .HasColumnType("int");
-
                     b.Property<string>("Propriedade")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
@@ -80,9 +82,35 @@ namespace EstimativaColheita.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Contratos", (string)null);
+                });
+
+            modelBuilder.Entity("EstimativaColheita.Models.EncarregadoModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CodigoInterno")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdFiscalCampo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("IdFiscalCampo");
 
-                    b.ToTable("Contratos", (string)null);
+                    b.ToTable("Encarregados", (string)null);
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.EstimativaColheitaModel", b =>
@@ -105,6 +133,9 @@ namespace EstimativaColheita.Migrations
                     b.Property<int>("IdContrato")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdEncarregado")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdMotivoAlteracao")
                         .HasColumnType("int");
 
@@ -117,6 +148,8 @@ namespace EstimativaColheita.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IdContrato");
+
+                    b.HasIndex("IdEncarregado");
 
                     b.HasIndex("IdMotivoAlteracao");
 
@@ -263,6 +296,10 @@ namespace EstimativaColheita.Migrations
 
             modelBuilder.Entity("EstimativaColheita.Models.ColheitaRealizadaModel", b =>
                 {
+                    b.HasOne("EstimativaColheita.Models.EncarregadoModel", null)
+                        .WithMany("ColheitasRealizadas")
+                        .HasForeignKey("EncarregadoModelId");
+
                     b.HasOne("EstimativaColheita.Models.ContratoModel", "Contrato")
                         .WithMany("ColheitasRealizadas")
                         .HasForeignKey("IdContrato")
@@ -280,10 +317,10 @@ namespace EstimativaColheita.Migrations
                     b.Navigation("Talhao");
                 });
 
-            modelBuilder.Entity("EstimativaColheita.Models.ContratoModel", b =>
+            modelBuilder.Entity("EstimativaColheita.Models.EncarregadoModel", b =>
                 {
                     b.HasOne("EstimativaColheita.Models.FiscalCampoModel", "FiscalCampo")
-                        .WithMany("Contratos")
+                        .WithMany("Encarregados")
                         .HasForeignKey("IdFiscalCampo")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -296,6 +333,12 @@ namespace EstimativaColheita.Migrations
                     b.HasOne("EstimativaColheita.Models.ContratoModel", "Contrato")
                         .WithMany("Estimativas")
                         .HasForeignKey("IdContrato")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EstimativaColheita.Models.EncarregadoModel", "Encarregado")
+                        .WithMany("Estimativas")
+                        .HasForeignKey("IdEncarregado")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -318,6 +361,8 @@ namespace EstimativaColheita.Migrations
                         .IsRequired();
 
                     b.Navigation("Contrato");
+
+                    b.Navigation("Encarregado");
 
                     b.Navigation("MotivoAlteracao");
 
@@ -354,9 +399,16 @@ namespace EstimativaColheita.Migrations
                     b.Navigation("Talhoes");
                 });
 
+            modelBuilder.Entity("EstimativaColheita.Models.EncarregadoModel", b =>
+                {
+                    b.Navigation("ColheitasRealizadas");
+
+                    b.Navigation("Estimativas");
+                });
+
             modelBuilder.Entity("EstimativaColheita.Models.FiscalCampoModel", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("Encarregados");
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.MotivoAlteracaoModel", b =>

@@ -31,7 +31,7 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Encarregados
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
+                .Include(enc => enc.FiscalCampo)
                 .OrderBy(enc => enc.CodigoInterno)
                 .ToListAsync();
         }
@@ -44,7 +44,7 @@ namespace EstimativaColheita.Repositories.Services
             return _appContext
                 .Encarregados
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
+                .Include(enc => enc.FiscalCampo)
                 .Where(enc => enc.Ativo == true)
                 .OrderBy(enc => enc.CodigoInterno);
         }
@@ -58,7 +58,7 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Encarregados
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
+                .Include(enc => enc.FiscalCampo)
                 .FirstOrDefaultAsync(enc => enc.Id == id);
         }
 
@@ -71,7 +71,7 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Encarregados
                 .AsNoTracking()
-                .Include(fis => fis.FiscalCampo)
+                .Include(enc => enc.FiscalCampo)
                 .FirstOrDefaultAsync(enc => enc.CodigoInterno == codigoInterno);
         }
 

@@ -31,8 +31,8 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .ColheitasRealizadas
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(tal => tal.Talhao)                
+                .Include(col => col.Contrato)
+                .Include(col => col.Talhao)                
                 .OrderBy(col => col.DataLancamento)
                 .ToListAsync();
         }

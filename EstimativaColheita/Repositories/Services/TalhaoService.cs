@@ -31,8 +31,8 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Talhoes
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(var => var.Variedade)
+                .Include(tal => tal.Contrato)
+                .Include(tal => tal.Variedade)
                 .OrderBy(tal => tal.CodigoInterno)
                 .ToListAsync();
         }
@@ -45,8 +45,8 @@ namespace EstimativaColheita.Repositories.Services
             return _appContext
                 .Talhoes
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(var => var.Variedade)
+                .Include(tal => tal.Contrato)
+                .Include(tal => tal.Variedade)
                 .Where(tal => tal.Ativo == true)
                 .OrderBy(tal => tal.CodigoInterno);
         }
@@ -60,8 +60,8 @@ namespace EstimativaColheita.Repositories.Services
             return _appContext
                 .Talhoes
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(var => var.Variedade)
+                .Include(tal => tal.Contrato)
+                .Include(tal => tal.Variedade)
                 .Where(tal => tal.Ativo == true && tal.IdContrato == codigoContrato)
                 .OrderBy(tal => tal.CodigoInterno);
         }
@@ -75,8 +75,8 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Talhoes
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(var => var.Variedade)
+                .Include(tal => tal.Contrato)
+                .Include(tal => tal.Variedade)
                 .FirstOrDefaultAsync(tal => tal.Id == id);
         }
 
@@ -89,8 +89,8 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .Talhoes
                 .AsNoTracking()
-                .Include(con => con.Contrato)
-                .Include(var => var.Variedade)
+                .Include(tal => tal.Contrato)
+                .Include(tal => tal.Variedade)
                 .FirstOrDefaultAsync(tal => tal.CodigoInterno == codigoInterno);
         }
 

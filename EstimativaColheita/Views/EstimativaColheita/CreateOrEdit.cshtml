@@ -1,61 +1,61 @@
 ﻿@model EstimativaColheita.Models.EstimativaColheitaModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Estimativas";
 }
 
-<h1>Create</h1>
-
-<h4>EstimativaColheitaModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<div class="card border-secondary mb-3">
+    <div class="card-header">
+        @if (Model.Id == 0) { <text><h6 card-title>Adicionar registro</h6></text> } 
+        else { <text><h6 card-title>Editar registro</h6></text> }
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateOrEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <input type="hidden" asp-for="Id"/>
+            <!--<div class="form-group">
                 <label asp-for="DataLancamento" class="control-label"></label>
                 <input asp-for="DataLancamento" class="form-control" />
                 <span asp-validation-for="DataLancamento" class="text-danger"></span>
-            </div>
+            </div>-->
             <div class="form-group">
                 <label asp-for="Caixas" class="control-label"></label>
-                <input asp-for="Caixas" class="form-control" />
+                <input asp-for="Caixas" class="form-control form-control-sm" />
                 <span asp-validation-for="Caixas" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label asp-for="DataAlteracao" class="control-label"></label>
                 <input asp-for="DataAlteracao" class="form-control" />
                 <span asp-validation-for="DataAlteracao" class="text-danger"></span>
-            </div>
+            </div>-->
             <div class="form-group">
                 <label asp-for="IdEncarregado" class="control-label"></label>
-                <select asp-for="IdEncarregado" class ="form-control" asp-items="ViewBag.IdEncarregado"></select>
+                <select asp-for="IdEncarregado" class ="form-select form-select-sm" asp-items="ViewBag.IdEncarregado"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdContrato" class="control-label"></label>
-                <select asp-for="IdContrato" class ="form-control" asp-items="ViewBag.IdContrato"></select>
+                <select asp-for="IdContrato" class ="form-select form-select-sm" asp-items="ViewBag.IdContrato"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdTalhao" class="control-label"></label>
-                <select asp-for="IdTalhao" class ="form-control form-control-sm" asp-items="ViewBag.IdTalhao"></select>
+                <select asp-for="IdTalhao" class ="form-select form-select-sm" asp-items="ViewBag.IdTalhao"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdMotivoAlteracao" class="control-label"></label>
-                <select asp-for="IdMotivoAlteracao" class ="form-select" asp-items="ViewBag.IdMotivoAlteracao"></select>
+                <select asp-for="IdMotivoAlteracao" class ="form-select form-select-sm" asp-items="ViewBag.IdMotivoAlteracao"></select>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label asp-for="IdTipoLancamento" class="control-label"></label>
                 <select asp-for="IdTipoLancamento" class ="form-select form-select-sm" asp-items="ViewBag.IdTipoLancamento"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>-->
+            <hr />
+            <div class="btn-group">
+                <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="card-footer"></div>
 </div>
 
 @section Scripts {

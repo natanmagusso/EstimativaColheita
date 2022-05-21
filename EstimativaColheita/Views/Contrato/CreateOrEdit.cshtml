@@ -4,10 +4,10 @@
     ViewData["Title"] = "Contratos";
 }
 
-<div class="card">
+<div class="card border-secondary mb-3">
     <div class="card-header">
-        @if (Model.Id == 0) { <text>Adicionar registro</text> } 
-        else { <text>Editar registro</text> }
+        @if (Model.Id == 0) { <text><h6 card-title>Adicionar registro</h6></text> } 
+        else { <text><h6 card-title>Editar registro</h6></text> }
     </div>
     <div class="card-body">
         <form asp-action="CreateOrEdit">
@@ -15,17 +15,17 @@
             <input type="hidden" asp-for="Id"/>
             <div class="form-group">
                 <label asp-for="CodigoInterno" class="control-label"></label>
-                <input asp-for="CodigoInterno" class="form-control" />
+                <input asp-for="CodigoInterno" class="form-control form-control-sm" />
                 <span asp-validation-for="CodigoInterno" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Propriedade" class="control-label"></label>
-                <input asp-for="Propriedade" class="form-control" />
+                <input asp-for="Propriedade" class="form-control form-control-sm" />
                 <span asp-validation-for="Propriedade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Titular" class="control-label"></label>
-                <input asp-for="Titular" class="form-control" />
+                <input asp-for="Titular" class="form-control form-control-sm" />
                 <span asp-validation-for="Titular" class="text-danger"></span>
             </div>
             <hr />

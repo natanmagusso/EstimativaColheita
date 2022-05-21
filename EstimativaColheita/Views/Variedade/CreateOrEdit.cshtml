@@ -1,12 +1,13 @@
 ﻿@model EstimativaColheita.Models.VariedadeModel
 
 @{
-    ViewData["Title"] = "Adicionar/Editar";
+    ViewData["Title"] = "Variedades";
 }
 
-<div class="card">
+<div class="card border-secondary mb-3">
     <div class="card-header">
-        Adicionar/Editar registros
+        @if (Model.Id == 0) { <text><h6 card-title>Adicionar registro</h6></text> } 
+        else { <text><h6 card-title>Editar registro</h6></text> }
     </div>
     <div class="card-body">
         <form asp-action="CreateOrEdit">
@@ -14,12 +15,12 @@
             <input type="hidden" asp-for="Id"/>
             <div class="form-group">
                 <label asp-for="CodigoInterno" class="control-label"></label>
-                <input asp-for="CodigoInterno" class="form-control" />
+                <input asp-for="CodigoInterno" class="form-control form-control-sm" />
                 <span asp-validation-for="CodigoInterno" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
+                <input asp-for="Descricao" class="form-control form-control-sm" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <hr />

@@ -16,13 +16,12 @@
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.DataLancamento)</th>
-                    <th>@Html.DisplayNameFor(model => model.Caixas)</th>
-                    <th>@Html.DisplayNameFor(model => model.DataAlteracao)</th>
-                    <th>@Html.DisplayNameFor(model => model.Encarregado.DescricaoCompleta)</th>
                     <th>@Html.DisplayNameFor(model => model.Contrato.DescricaoCompleta)</th>
                     <th>@Html.DisplayNameFor(model => model.Talhao.DescricaoCompleta)</th>
-                    <th>@Html.DisplayNameFor(model => model.MotivoAlteracao.Descricao)</th>
-                    <th>@Html.DisplayNameFor(model => model.TipoLancamento.Descricao)</th>
+                    <th>@Html.DisplayNameFor(model => model.Encarregado.DescricaoCompleta)</th> 
+                    <th>@Html.DisplayNameFor(model => model.Caixas)</th>
+                    <th>@Html.DisplayNameFor(model => model.TipoLancamento.DescricaoCompleta)</th>
+                    <th>@Html.DisplayNameFor(model => model.MotivoAlteracao.DescricaoCompleta)</th>                    
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -30,13 +29,12 @@
                 @foreach (var item in Model) {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Talhao.DescricaoCompleta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Encarregado.DescricaoCompleta)</td>
                         <td>@Html.DisplayFor(modelItem => item.Caixas)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DataAlteracao)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Encarregado.Nome)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Contrato.Propriedade)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Talhao.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => item.MotivoAlteracao.Descricao)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TipoLancamento.Descricao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TipoLancamento.DescricaoCompleta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MotivoAlteracao.DescricaoCompleta)</td>                        
                         <td><a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a></td>
                     </tr>
                 }

@@ -20,6 +20,8 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo data de lançamento da estimativa.
         /// </summary>
+        [Display(Name = "Lançamento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime DataLancamento { get; set; }
 
         /// <summary>
@@ -33,6 +35,8 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo data de alteração da estimativa.
         /// </summary>
+        [Display(Name = "Alteração")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime DataAlteracao { get; set; }
 
         /// <summary>

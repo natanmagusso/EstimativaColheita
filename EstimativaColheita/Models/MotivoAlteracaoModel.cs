@@ -33,6 +33,13 @@ namespace EstimativaColheita.Models
         /// Classe coleção das estimativas.
         /// </summary>
         public List<EstimativaColheitaModel> Estimativas { get; set; }
+
+        /// <summary>
+        /// Campo descrição completa do motivo de alteração.
+        /// </summary>
+        [NotMapped]
+        [Display(Name = "Motivo")]
+        public string DescricaoCompleta => Descricao;
     }
 
     /// <summary>

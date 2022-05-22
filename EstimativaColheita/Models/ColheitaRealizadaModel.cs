@@ -20,6 +20,8 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo data de lançamento da colheita realizada.
         /// </summary>
+        [Display(Name = "Lançamento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime DataLancamento { get; set; }
 
         /// <summary>

@@ -37,6 +37,13 @@ namespace EstimativaColheita.Models
         /// Classe coleção das estimativas.
         /// </summary>
         public List<EstimativaColheitaModel> Estimativas { get; set; }
+
+        /// <summary>
+        /// Campo descrição completa do tipo de lançamento.
+        /// </summary>
+        [NotMapped]
+        [Display(Name = "Tipo")]
+        public string DescricaoCompleta => Descricao;
     }
 
     /// <summary>

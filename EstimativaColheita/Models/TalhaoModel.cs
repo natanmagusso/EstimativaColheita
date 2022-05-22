@@ -20,20 +20,25 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo código interno do talhão.
         /// </summary>
-        [Range(1, 9999)]
-        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]        
+        [Required(ErrorMessage = "Código obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Código inválido")]
+        [Display(Name = "Código")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo ano do plantio.
         /// </summary>
-        [Required(ErrorMessage = "O 'Ano do plantio' é de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Ano plantio obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Ano plantio inválido")]
+        [Display(Name = "Ano plantio")]
         public int AnoPlantio { get; set; }
 
         /// <summary>
         /// Campo quantidade de pés.
         /// </summary>
-        [Required(ErrorMessage = "A 'Quantidade de pés' é de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Qtde pés obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Qtde pés inválido")]
+        [Display(Name = "Qtde pés")]
         public int QuantidadePes { get; set; }
 
         /// <summary>
@@ -75,7 +80,8 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do talhão.
         /// </summary>
         [NotMapped]
-        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + AnoPlantio.ToString(); }}
+        [Display(Name = "Descrição")]
+        public string DescricaoCompleta => CodigoInterno.ToString() + " | " + AnoPlantio.ToString();
     }
 
     /// <summary>

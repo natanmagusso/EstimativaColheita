@@ -97,7 +97,6 @@ namespace EstimativaColheita.Repositories.Services
         public async Task AlterarVariedadeAsync(VariedadeModel request, int id)
         {
             var alterar = await _appContext.Variedades.FindAsync(id);
-            alterar.CodigoInterno = request.CodigoInterno;
             alterar.Descricao = request.Descricao.ToUpper();
 
             _appContext.Variedades.Update(alterar);

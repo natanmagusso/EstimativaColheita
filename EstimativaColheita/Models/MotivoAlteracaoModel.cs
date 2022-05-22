@@ -20,7 +20,8 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo descrição do motivo de alteração.
         /// </summary>
-        [Required(ErrorMessage = "A 'Descrição' é de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Descrição obrigatória")]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         /// <summary>

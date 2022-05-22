@@ -25,7 +25,9 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo quantidade da fruta.
         /// </summary>
-        [Required(ErrorMessage = "A 'Quantidade de caixas' é de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Caixas obrigatórias")]
+        [Range(1, int.MaxValue, ErrorMessage = "Caixas inválidas")]
+        [Display(Name = "Caixas")]
         public int Caixas { get; set; }
 
         /// <summary>

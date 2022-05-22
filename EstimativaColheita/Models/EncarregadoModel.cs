@@ -20,14 +20,16 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo código interno do encarregado.
         /// </summary>        
-        [Range(1, 99999)]
-        [Required(ErrorMessage = "O 'Código' é de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Código obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Código inválido")]
+        [Display(Name = "Código")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo nome do encarregado.
         /// </summary>
-        [Required(ErrorMessage = "O 'Nome' é de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Nome obrigatório")]
+        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         /// <summary>
@@ -59,7 +61,8 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do encarregado.
         /// </summary>
         [NotMapped]
-        public string DescricaoCompleta { get { return CodigoInterno.ToString() + " | " + Nome; } }
+        [Display(Name = "Descrição")]
+        public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Nome;
     }
 
     /// <summary>

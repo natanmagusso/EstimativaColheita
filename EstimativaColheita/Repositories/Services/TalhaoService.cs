@@ -123,9 +123,7 @@ namespace EstimativaColheita.Repositories.Services
         public async Task AlterarTalhaoAsync(TalhaoModel request, int id)
         {
             var alterar = await _appContext.Talhoes.FindAsync(id);
-            alterar.IdContrato = request.IdContrato;
             alterar.IdVariedade = request.IdVariedade;
-            alterar.CodigoInterno = request.CodigoInterno;
             alterar.AnoPlantio = request.AnoPlantio;
             alterar.QuantidadePes = request.QuantidadePes;
 

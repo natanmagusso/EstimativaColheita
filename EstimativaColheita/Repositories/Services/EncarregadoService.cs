@@ -103,7 +103,6 @@ namespace EstimativaColheita.Repositories.Services
         {
             var alterar = await _appContext.Encarregados.FindAsync(id);
             alterar.IdFiscalCampo = request.IdFiscalCampo;
-            alterar.CodigoInterno = request.CodigoInterno;
             alterar.Nome = request.Nome.ToUpper();
 
             _appContext.Encarregados.Update(alterar);

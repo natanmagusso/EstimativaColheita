@@ -98,7 +98,6 @@ namespace EstimativaColheita.Repositories.Services
         public async Task AlterarContratoAsync(ContratoModel request, int id)
         {
             var alterar = await _appContext.Contratos.FindAsync(id);
-            alterar.CodigoInterno = request.CodigoInterno;
             alterar.Propriedade = request.Propriedade.ToUpper();
             alterar.Titular = request.Titular.ToUpper();
 

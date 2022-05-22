@@ -98,7 +98,6 @@ namespace EstimativaColheita.Repositories.Services
         public async Task AlterarFiscalCampoAsync(FiscalCampoModel request, int id)
         {
             var alterar = await _appContext.FiscaisCampo.FindAsync(id);
-            alterar.CodigoInterno = request.CodigoInterno;
             alterar.Nome = request.Nome.ToUpper();
             alterar.Apelido = request.Apelido.ToUpper();
 

@@ -61,7 +61,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do encarregado.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Encarregado")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Nome;
     }
 

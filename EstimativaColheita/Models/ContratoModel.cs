@@ -63,7 +63,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do contrato.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Contrato")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Propriedade;
     }
 

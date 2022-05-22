@@ -53,7 +53,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do fiscal de campo.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Coordenador")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Apelido;
     }
 

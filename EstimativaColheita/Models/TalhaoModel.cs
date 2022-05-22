@@ -80,7 +80,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do talhão.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Talhão")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + AnoPlantio.ToString();
     }
 

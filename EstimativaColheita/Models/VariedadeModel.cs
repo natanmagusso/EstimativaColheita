@@ -46,7 +46,7 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa da variedade.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Variedade")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Descricao;
     }
 

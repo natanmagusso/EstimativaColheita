@@ -145,7 +145,7 @@ namespace EstimativaColheita.Migrations
                     Caixas = table.Column<int>(type: "int", nullable: false),
                     IdContrato = table.Column<int>(type: "int", nullable: false),
                     IdTalhao = table.Column<int>(type: "int", nullable: false),
-                    EncarregadoModelId = table.Column<int>(type: "int", nullable: true)
+                    IdEncarregado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,10 +157,11 @@ namespace EstimativaColheita.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ColheitasRealizadas_Encarregados_EncarregadoModelId",
-                        column: x => x.EncarregadoModelId,
+                        name: "FK_ColheitasRealizadas_Encarregados_IdEncarregado",
+                        column: x => x.IdEncarregado,
                         principalTable: "Encarregados",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ColheitasRealizadas_Talhoes_IdTalhao",
                         column: x => x.IdTalhao,
@@ -229,14 +230,14 @@ namespace EstimativaColheita.Migrations
                 values: new object[] { 2, "COLHIDO" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ColheitasRealizadas_EncarregadoModelId",
-                table: "ColheitasRealizadas",
-                column: "EncarregadoModelId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ColheitasRealizadas_IdContrato",
                 table: "ColheitasRealizadas",
                 column: "IdContrato");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ColheitasRealizadas_IdEncarregado",
+                table: "ColheitasRealizadas",
+                column: "IdEncarregado");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ColheitasRealizadas_IdTalhao",

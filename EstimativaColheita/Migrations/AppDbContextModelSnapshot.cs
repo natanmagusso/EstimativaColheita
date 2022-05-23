@@ -36,10 +36,10 @@ namespace EstimativaColheita.Migrations
                     b.Property<DateTime>("DataLancamento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EncarregadoModelId")
+                    b.Property<int>("IdContrato")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdContrato")
+                    b.Property<int>("IdEncarregado")
                         .HasColumnType("int");
 
                     b.Property<int>("IdTalhao")
@@ -47,9 +47,9 @@ namespace EstimativaColheita.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EncarregadoModelId");
-
                     b.HasIndex("IdContrato");
+
+                    b.HasIndex("IdEncarregado");
 
                     b.HasIndex("IdTalhao");
 
@@ -291,13 +291,15 @@ namespace EstimativaColheita.Migrations
 
             modelBuilder.Entity("EstimativaColheita.Models.ColheitaRealizadaModel", b =>
                 {
-                    b.HasOne("EstimativaColheita.Models.EncarregadoModel", null)
-                        .WithMany("ColheitasRealizadas")
-                        .HasForeignKey("EncarregadoModelId");
-
                     b.HasOne("EstimativaColheita.Models.ContratoModel", "Contrato")
                         .WithMany("ColheitasRealizadas")
                         .HasForeignKey("IdContrato")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EstimativaColheita.Models.EncarregadoModel", "Encarregado")
+                        .WithMany("ColheitasRealizadas")
+                        .HasForeignKey("IdEncarregado")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -308,6 +310,8 @@ namespace EstimativaColheita.Migrations
                         .IsRequired();
 
                     b.Navigation("Contrato");
+
+                    b.Navigation("Encarregado");
 
                     b.Navigation("Talhao");
                 });

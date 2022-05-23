@@ -33,16 +33,6 @@ namespace EstimativaColheita.Models
         public int Caixas { get; set; }
 
         /// <summary>
-        /// Campo id do encarregado.
-        /// </summary>
-        [ForeignKey("IdEncarregado")]
-        public int IdEncarregado { get; set; }
-        /// <summary>
-        /// Classe encarregado.
-        /// </summary>
-        public EncarregadoModel Encarregado { get; set; }
-
-        /// <summary>
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
@@ -61,6 +51,16 @@ namespace EstimativaColheita.Models
         /// Classe talhão.
         /// </summary>
         public TalhaoModel Talhao { get; set; }
+
+        /// <summary>
+        /// Campo id do encarregado.
+        /// </summary>
+        [ForeignKey("IdEncarregado")]
+        public int IdEncarregado { get; set; }
+        /// <summary>
+        /// Classe encarregado.
+        /// </summary>
+        public EncarregadoModel Encarregado { get; set; }
 
         /// <summary>
         /// Campo id do motivo de alteração.

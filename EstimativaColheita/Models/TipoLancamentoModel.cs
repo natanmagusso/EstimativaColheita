@@ -11,15 +11,6 @@ namespace EstimativaColheita.Models
     public class TipoLancamentoModel
     {
         /// <summary>
-        /// Classe usada para imputar as informações na base de dados dentro do arquivo AppDbContext.
-        /// </summary>
-        public TipoLancamentoModel(int id, string descricao)
-        {
-            Id = id;
-            Descricao = descricao;
-        }
-
-        /// <summary>
         /// Campo id do tipo de lançamento.
         /// </summary>
         [Key]
@@ -53,11 +44,10 @@ namespace EstimativaColheita.Models
     {
         public void Configure(EntityTypeBuilder<TipoLancamentoModel> builder)
         {
-            builder.ToTable("TiposLancamento").
-                HasData(new List<TipoLancamentoModel>() {
-                    new TipoLancamentoModel(1, "ESTIMADO"),
-                    new TipoLancamentoModel(2, "COLHIDO"),
-            });
+            builder.ToTable("TiposLancamento").HasData(
+                new TipoLancamentoModel { Id = 1, Descricao = "ESTIMADO" },
+                new TipoLancamentoModel { Id = 2, Descricao = "COLHIDO" }
+            );
 
             builder.Property(tip => tip.Descricao).HasColumnType("varchar(50)").IsRequired();
         }

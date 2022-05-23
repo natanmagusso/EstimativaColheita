@@ -37,57 +37,55 @@ namespace EstimativaColheita.Models
         /// </summary>
         [ForeignKey("IdContrato")]
         public int IdContrato { get; set; }
-        /// <summary>
-        /// Classe contrato.
-        /// </summary>
-        public ContratoModel Contrato { get; set; }
 
         /// <summary>
         /// Campo id do talhão.
         /// </summary>
         [ForeignKey("IdTalhao")]
         public int IdTalhao { get; set; }
-        /// <summary>
-        /// Classe talhão.
-        /// </summary>
-        public TalhaoModel Talhao { get; set; }
 
         /// <summary>
         /// Campo id do encarregado.
         /// </summary>
         [ForeignKey("IdEncarregado")]
         public int IdEncarregado { get; set; }
-        /// <summary>
-        /// Classe encarregado.
-        /// </summary>
-        public EncarregadoModel Encarregado { get; set; }
 
         /// <summary>
         /// Campo id do motivo de alteração.
         /// </summary>
         [ForeignKey("IdEstimativaMotivo")]
         public int IdEstimativaMotivo { get; set; }
-        /// <summary>
-        /// Classe motivo de alteração.
-        /// </summary>
-        public EstimativaMotivoModel EstimativaMotivo { get; set; }
 
         /// <summary>
         /// Campo id do tipo de lançamento.
         /// </summary>
         [ForeignKey("IdTipoLancamento")]
         public int IdTipoLancamento { get; set; }
+
+        /// <summary>
+        /// Classe contrato.
+        /// </summary>
+        public ContratoModel Contrato { get; set; }
+
+        /// <summary>
+        /// Classe talhão.
+        /// </summary>
+        public TalhaoModel Talhao { get; set; }
+
+        /// <summary>
+        /// Classe encarregado.
+        /// </summary>
+        public EncarregadoModel Encarregado { get; set; }
+
+        /// <summary>
+        /// Classe motivo de estimativa.
+        /// </summary>
+        public EstimativaMotivoModel EstimativaMotivo { get; set; }
+
         /// <summary>
         /// Classe tipo de lançamento.
         /// </summary>
         public TipoLancamentoModel TipoLancamento { get; set; }
-
-        /// <summary>
-        /// Campo coordenador.
-        /// </summary>
-        [NotMapped]
-        [Display(Name = "Coordenador")]
-        public string DescricaoCompleta => Encarregado.FiscalCampo.DescricaoCompleta;
     }
 
     /// <summary>

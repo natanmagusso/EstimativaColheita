@@ -42,6 +42,7 @@ namespace EstimativaColheita.Models
         /// </summary>
         [ForeignKey("IdFiscalCampo")]
         public int IdFiscalCampo { get; set; }
+
         /// <summary>
         /// Classe fiscal de campo.
         /// </summary>

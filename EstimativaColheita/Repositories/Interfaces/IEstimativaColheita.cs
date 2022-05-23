@@ -23,12 +23,5 @@ namespace EstimativaColheita.Repositories.Interfaces
         /// </summary>
         /// <param name="request">Classe request da estimativa de colheita.</param>
         Task<int> InserirEstimativaColheitaAsync(EstimativaColheitaModel request);
-
-        /// <summary>
-        /// Método alterar.
-        /// </summary>
-        /// <param name="request">Classe request da estimativa de colheita.</param>
-        /// <param name="id">Id da estimativa de colheita.</param>
-        Task AlterarEstimativaColheitaAsync(EstimativaColheitaModel request, int id);
     }
 }

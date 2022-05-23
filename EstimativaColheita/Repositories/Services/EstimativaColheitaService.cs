@@ -34,7 +34,7 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.Encarregado)
                 .Include(est => est.Contrato)
                 .Include(est => est.Talhao)
-                .Include(est => est.MotivoAlteracao)
+                .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .OrderBy(est => est.DataLancamento)
                 .ToListAsync();
@@ -52,7 +52,7 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.Encarregado)
                 .Include(est => est.Contrato)
                 .Include(est => est.Talhao)
-                .Include(est => est.MotivoAlteracao)
+                .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .FirstOrDefaultAsync(est => est.Id == id);
         }
@@ -68,31 +68,15 @@ namespace EstimativaColheita.Repositories.Services
                 IdEncarregado = request.IdEncarregado,
                 IdContrato = request.IdContrato,
                 IdTalhao = request.IdTalhao,
-                IdMotivoAlteracao = request.IdMotivoAlteracao,
+                IdEstimativaMotivo = request.IdEstimativaMotivo,
                 IdTipoLancamento = request.IdTipoLancamento,
                 DataLancamento = request.DataLancamento,
-                Caixas = request.Caixas,
-                DataAlteracao = DateTime.Now
+                Caixas = request.Caixas
             };
 
             _appContext.EstimativasColheita.Add(inserir);
             await _appContext.SaveChangesAsync();
             return inserir.Id;
-        }
-
-        /// <summary>
-        /// Método alterar.
-        /// </summary>
-        /// <param name="request">Classe request da estimativa de colheita.</param>
-        /// <param name="id">Id da estimativa de colheita.</param>
-        public async Task AlterarEstimativaColheitaAsync(EstimativaColheitaModel request, int id)
-        {
-            var alterar = await _appContext.EstimativasColheita.FindAsync(id);
-            alterar.IdMotivoAlteracao = request.IdMotivoAlteracao;
-            alterar.DataAlteracao = DateTime.Now;
-
-            _appContext.EstimativasColheita.Update(alterar);
-            await _appContext.SaveChangesAsync();
         }
     }
 }

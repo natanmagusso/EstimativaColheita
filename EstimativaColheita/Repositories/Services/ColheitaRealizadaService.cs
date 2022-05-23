@@ -47,6 +47,7 @@ namespace EstimativaColheita.Repositories.Services
             {
                 IdContrato = request.IdContrato,
                 IdTalhao = request.IdTalhao,
+                IdEncarregado = request.IdEncarregado,
                 DataLancamento = DateTime.Now,
                 Caixas = request.Caixas,
             };

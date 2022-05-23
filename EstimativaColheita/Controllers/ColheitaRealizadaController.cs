@@ -35,7 +35,7 @@ namespace EstimativaColheita.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DataLancamento,Caixas,IdContrato,IdTalhao")] ColheitaRealizadaModel colheitaRealizada)
+        public async Task<IActionResult> Create([Bind("Id,DataLancamento,Caixas,IdContrato,IdTalhao,IdEncarregado")] ColheitaRealizadaModel colheitaRealizada)
         {
             if (ModelState.IsValid)
             {

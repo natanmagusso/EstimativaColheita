@@ -49,6 +49,7 @@ namespace EstimativaColheita.Controllers
         {
             if (ModelState.IsValid)
             {
+                estimativaColheita.IdTipoLancamento = 1;
                 await _estimativaColheita.InserirEstimativaColheitaAsync(estimativaColheita);
 
                 return RedirectToAction(nameof(Index));

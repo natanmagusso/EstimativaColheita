@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstimativaColheita.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220523020816_CreateInicial")]
+    [Migration("20220523121012_CreateInicial")]
     partial class CreateInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,6 +175,14 @@ namespace EstimativaColheita.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EstimativaMotivos", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ativo = true,
+                            Descricao = "APONTAMENTO DE CAMPO"
+                        });
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.FiscalCampoModel", b =>

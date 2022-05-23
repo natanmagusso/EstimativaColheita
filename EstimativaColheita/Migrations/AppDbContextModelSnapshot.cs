@@ -173,6 +173,14 @@ namespace EstimativaColheita.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EstimativaMotivos", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ativo = true,
+                            Descricao = "APONTAMENTO DE CAMPO"
+                        });
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.FiscalCampoModel", b =>

@@ -40,11 +40,10 @@ namespace EstimativaColheita.Controllers
                 {
                     IdContrato = colheitaRealizada.IdContrato,
                     IdTalhao = colheitaRealizada.IdTalhao,
-                    IdMotivoAlteracao = 1,
+                    IdEstimativaMotivo = 1,
                     IdTipoLancamento = 2,
                     DataLancamento = DateTime.Now,
-                    Caixas = colheitaRealizada.Caixas,
-                    DataAlteracao = DateTime.Now
+                    Caixas = colheitaRealizada.Caixas
                 };
 
                 await _colheitaRealizada.InserirColheitaRealizadaAsync(colheitaRealizada);

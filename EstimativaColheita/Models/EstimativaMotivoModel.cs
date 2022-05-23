@@ -8,7 +8,7 @@ namespace EstimativaColheita.Models
     /// <summary>
     /// Classe modelo para gerenciamento dos dados dos motivos de alterações.
     /// </summary>
-    public class MotivoAlteracaoModel
+    public class EstimativaMotivoModel
     {
         /// <summary>
         /// Campo id do motivo de alteração.
@@ -45,11 +45,11 @@ namespace EstimativaColheita.Models
     /// <summary>
     /// Classe modelo para configuração da tabela no banco de dados.
     /// </summary>
-    public class MotivoAlteracaoConfiguration : IEntityTypeConfiguration<MotivoAlteracaoModel>
+    public class EstimativaMotivoConfiguration : IEntityTypeConfiguration<EstimativaMotivoModel>
     {
-        public void Configure(EntityTypeBuilder<MotivoAlteracaoModel> builder)
+        public void Configure(EntityTypeBuilder<EstimativaMotivoModel> builder)
         {
-            builder.ToTable("MotivosAlteracoes");
+            builder.ToTable("EstimativaMotivos");
             builder.Property(mot => mot.Descricao).HasColumnType("varchar(200)").IsRequired();
             builder.Property(mot => mot.Ativo).HasColumnType("bit");
         }

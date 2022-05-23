@@ -33,13 +33,6 @@ namespace EstimativaColheita.Models
         public int Caixas { get; set; }
 
         /// <summary>
-        /// Campo data de alteração da estimativa.
-        /// </summary>
-        [Display(Name = "Alteração")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
-        public DateTime DataAlteracao { get; set; }
-
-        /// <summary>
         /// Campo id do encarregado.
         /// </summary>
         [ForeignKey("IdEncarregado")]
@@ -72,12 +65,12 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo id do motivo de alteração.
         /// </summary>
-        [ForeignKey("IdMotivoAlteracao")]
-        public int IdMotivoAlteracao { get; set; }
+        [ForeignKey("IdEstimativaMotivo")]
+        public int IdEstimativaMotivo { get; set; }
         /// <summary>
         /// Classe motivo de alteração.
         /// </summary>
-        public MotivoAlteracaoModel MotivoAlteracao { get; set; }
+        public EstimativaMotivoModel EstimativaMotivo { get; set; }
 
         /// <summary>
         /// Campo id do tipo de lançamento.
@@ -88,6 +81,13 @@ namespace EstimativaColheita.Models
         /// Classe tipo de lançamento.
         /// </summary>
         public TipoLancamentoModel TipoLancamento { get; set; }
+
+        /// <summary>
+        /// Campo coordenador.
+        /// </summary>
+        [NotMapped]
+        [Display(Name = "Coordenador")]
+        public string DescricaoCompleta => Encarregado.FiscalCampo.DescricaoCompleta;
     }
 
     /// <summary>
@@ -115,9 +115,9 @@ namespace EstimativaColheita.Models
                 .HasForeignKey(est => est.IdTalhao)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne<MotivoAlteracaoModel>(est => est.MotivoAlteracao)
+            builder.HasOne<EstimativaMotivoModel>(est => est.EstimativaMotivo)
                 .WithMany(mot => mot.Estimativas)
-                .HasForeignKey(est => est.IdMotivoAlteracao)
+                .HasForeignKey(est => est.IdEstimativaMotivo)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne<TipoLancamentoModel>(est => est.TipoLancamento)

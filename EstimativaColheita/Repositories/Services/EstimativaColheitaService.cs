@@ -70,7 +70,7 @@ namespace EstimativaColheita.Repositories.Services
                 IdTalhao = request.IdTalhao,
                 IdEstimativaMotivo = request.IdEstimativaMotivo,
                 IdTipoLancamento = request.IdTipoLancamento,
-                DataLancamento = request.DataLancamento,
+                DataLancamento = DateTime.Now,
                 Caixas = request.Caixas
             };
 

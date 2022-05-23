@@ -26,7 +26,7 @@ namespace EstimativaColheita.Repositories.Services
         /// <summary>
         /// Método buscar todos os registros.
         /// </summary>
-        public async Task<List<EstimativaMotivoModel>> ConsultarTodosMotivosAlteracoesAsync()
+        public async Task<List<EstimativaMotivoModel>> ConsultarTodosMotivosEstimativaAsync()
         {
             return await _appContext
                 .EstimativaMotivos
@@ -38,7 +38,7 @@ namespace EstimativaColheita.Repositories.Services
         /// <summary>
         /// Método buscar todos os registros ativos.
         /// </summary>
-        public IEnumerable<EstimativaMotivoModel> ConsultarMotivosAlteracoesAtivosAsync()
+        public IEnumerable<EstimativaMotivoModel> ConsultarMotivosEstimativasAtivosAsync()
         {
             return _appContext
                 .EstimativaMotivos
@@ -51,7 +51,7 @@ namespace EstimativaColheita.Repositories.Services
         /// Método que retorna o motivo de alteração através do id informado.
         /// </summary>
         /// <param name="id">Id do motivo alteração.</param>
-        public async Task<EstimativaMotivoModel> ConsultarMotivoAlteracaoIdAsync(int id)
+        public async Task<EstimativaMotivoModel> ConsultarMotivoEstimativaIdAsync(int id)
         {
             return await _appContext
                 .EstimativaMotivos
@@ -63,7 +63,7 @@ namespace EstimativaColheita.Repositories.Services
         /// Método inserir.
         /// </summary>
         /// <param name="request">Classe request do motivo de alteração.</param>
-        public async Task<int> InserirMotivoAlteracaoAsync(EstimativaMotivoModel request)
+        public async Task<int> InserirMotivoEstimativaAsync(EstimativaMotivoModel request)
         {
             var inserir = new EstimativaMotivoModel()
             {
@@ -81,7 +81,7 @@ namespace EstimativaColheita.Repositories.Services
         /// </summary>
         /// <param name="request">Classe request do motivo de alteração.</param>
         /// <param name="id">Id do motivo de alteração.</param>
-        public async Task AlterarMotivoAlteracaoAsync(EstimativaMotivoModel request, int id)
+        public async Task AlterarMotivoEstimativaAsync(EstimativaMotivoModel request, int id)
         {
             var alterar = await _appContext.EstimativaMotivos.FindAsync(id);
             alterar.Descricao = request.Descricao.ToUpper();
@@ -94,7 +94,7 @@ namespace EstimativaColheita.Repositories.Services
         /// Método para desabilitar o motivo de alteração.
         /// </summary>
         /// <param name="id">Id do motivo de alteração.</param>
-        public async Task DesabilitarMotivoAlteracaoAsync(int id)
+        public async Task DesabilitarMotivoEstimativaAsync(int id)
         {
             var desabilitar = await _appContext.EstimativaMotivos.FindAsync(id);
             desabilitar.Ativo = false;
@@ -107,7 +107,7 @@ namespace EstimativaColheita.Repositories.Services
         /// Método para habilitar o motivo de alteração.
         /// </summary>
         /// <param name="id">Id do motivo de alteração.</param>
-        public async Task HabilitarMotivoAlteracaoAsync(int id)
+        public async Task HabilitarMotivoEstimativaAsync(int id)
         {
             var habilitar = await _appContext.EstimativaMotivos.FindAsync(id);
             habilitar.Ativo = true;

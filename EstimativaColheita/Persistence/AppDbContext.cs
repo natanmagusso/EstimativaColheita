@@ -13,8 +13,8 @@ namespace EstimativaColheita.Persistence
             modelBuilder.ApplyConfiguration(new ContratoConfiguration());
             modelBuilder.ApplyConfiguration(new EncarregadoConfiguration());
             modelBuilder.ApplyConfiguration(new EstimativaColheitaConfiguration());
-            modelBuilder.ApplyConfiguration(new FiscalCampoConfiguration());
-            modelBuilder.ApplyConfiguration(new MotivoAlteracaoConfiguration());
+            modelBuilder.ApplyConfiguration(new EstimativaMotivoConfiguration());
+            modelBuilder.ApplyConfiguration(new FiscalCampoConfiguration());            
             modelBuilder.ApplyConfiguration(new TalhaoConfiguration());
             modelBuilder.ApplyConfiguration(new TipoLancamentoConfiguration());
             modelBuilder.ApplyConfiguration(new VariedadeConfiguration());
@@ -38,8 +38,8 @@ namespace EstimativaColheita.Persistence
         public DbSet<ContratoModel> Contratos { get; set; }
         public DbSet<EncarregadoModel> Encarregados { get; set; }
         public DbSet<EstimativaColheitaModel> EstimativasColheita { get; set; }
-        public DbSet<FiscalCampoModel> FiscaisCampo { get; set; }
-        public DbSet<MotivoAlteracaoModel> MotivosAlteracoes { get; set; }
+        public DbSet<EstimativaMotivoModel> EstimativaMotivos { get; set; }
+        public DbSet<FiscalCampoModel> FiscaisCampo { get; set; }        
         public DbSet<TalhaoModel> Talhoes { get; set; }
         public DbSet<TipoLancamentoModel> TiposLancamento { get; set; }
         public DbSet<VariedadeModel> Variedades { get; set; }

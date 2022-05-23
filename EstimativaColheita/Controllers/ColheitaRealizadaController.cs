@@ -10,13 +10,15 @@ namespace EstimativaColheita.Controllers
         private readonly IColheitaRealizada _colheitaRealizada;
         private readonly IContrato _contrato;
         private readonly ITalhao _talhao;
+        private readonly IEncarregado _encarregado;
         private readonly IEstimativaColheita _estimativaColheita;
 
-        public ColheitaRealizadaController(IColheitaRealizada colheitaRealizada, IContrato contrato, ITalhao talhao, IEstimativaColheita estimativaColheita)
+        public ColheitaRealizadaController(IColheitaRealizada colheitaRealizada, IContrato contrato, ITalhao talhao, IEncarregado encarregado, IEstimativaColheita estimativaColheita)
         {
             _colheitaRealizada = colheitaRealizada;
             _contrato = contrato;
             _talhao = talhao;
+            _encarregado = encarregado;
             _estimativaColheita = estimativaColheita;
         }
         public async Task<IActionResult> Index()
@@ -27,6 +29,7 @@ namespace EstimativaColheita.Controllers
         {
             ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta");
             ViewData["IdTalhao"] = new SelectList(_talhao.ConsultarTalhoesAtivosAsync(), "Id", "DescricaoCompleta");
+            ViewData["IdEncarregado"] = new SelectList(_encarregado.ConsultarEncarregadosAtivosAsync(), "Id", "DescricaoCompleta");
 
             return View(new ColheitaRealizadaModel());
         }
@@ -40,6 +43,7 @@ namespace EstimativaColheita.Controllers
                 {
                     IdContrato = colheitaRealizada.IdContrato,
                     IdTalhao = colheitaRealizada.IdTalhao,
+                    IdEncarregado = colheitaRealizada.IdEncarregado,
                     IdEstimativaMotivo = 1,
                     IdTipoLancamento = 2,
                     DataLancamento = DateTime.Now,
@@ -53,6 +57,7 @@ namespace EstimativaColheita.Controllers
             }
             ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta", colheitaRealizada.IdContrato);
             ViewData["IdTalhao"] = new SelectList(_talhao.ConsultarTalhoesAtivosAsync(), "Id", "DescricaoCompleta", colheitaRealizada.IdTalhao);
+            ViewData["IdEncarregado"] = new SelectList(_encarregado.ConsultarEncarregadosAtivosAsync(), "Id", "DescricaoCompleta", colheitaRealizada.IdEncarregado);
             return View(colheitaRealizada);
         }
     }

@@ -1,192 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using EstimativaColheita.Models;
-using EstimativaColheita.Persistence;
+using EstimativaColheita.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EstimativaColheita.Controllers
 {
     public class EstimativaColheitaController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IEstimativaColheita _estimativaColheita;
+        private readonly IContrato _contrato;
+        private readonly ITalhao _talhao;
+        private readonly IEncarregado _encarregado;
+        private readonly IEstimativaMotivo _estimativaMotivo;
+        private readonly ITipoLancamento _tipoLancamento;
 
-        public EstimativaColheitaController(AppDbContext context)
+        public EstimativaColheitaController(IEstimativaColheita estimativaColheita, IContrato contrato, ITalhao talhao, IEncarregado encarregado, IEstimativaMotivo estimativaMotivo, ITipoLancamento tipoLancamento)
         {
-            _context = context;
+            _estimativaColheita = estimativaColheita;
+            _contrato = contrato;
+            _talhao = talhao;
+            _encarregado = encarregado;
+            _estimativaMotivo = estimativaMotivo;
+            _tipoLancamento = tipoLancamento;
         }
-
-        // GET: EstimativaColheita
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.EstimativasColheita.Include(e => e.Contrato).Include(e => e.Encarregado).Include(e => e.EstimativaMotivo).Include(e => e.Talhao).Include(e => e.TipoLancamento);
-            return View(await appDbContext.ToListAsync());
+            return View(await _estimativaColheita.ConsultarTodasEstimativasColheitaAsync());
         }
-
-        // GET: EstimativaColheita/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.EstimativasColheita == null)
-            {
-                return NotFound();
-            }
+            var estimativaColheita = await _estimativaColheita.ConsultarEstimativaColheitaIdAsync(id);
 
-            var estimativaColheitaModel = await _context.EstimativasColheita
-                .Include(e => e.Contrato)
-                .Include(e => e.Encarregado)
-                .Include(e => e.EstimativaMotivo)
-                .Include(e => e.Talhao)
-                .Include(e => e.TipoLancamento)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (estimativaColheitaModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(estimativaColheitaModel);
+            return View(estimativaColheita);
         }
-
-        // GET: EstimativaColheita/Create
         public IActionResult Create()
         {
-            ViewData["IdContrato"] = new SelectList(_context.Contratos, "Id", "Propriedade");
-            ViewData["IdEncarregado"] = new SelectList(_context.Encarregados, "Id", "Nome");
-            ViewData["IdEstimativaMotivo"] = new SelectList(_context.EstimativaMotivos, "Id", "Descricao");
-            ViewData["IdTalhao"] = new SelectList(_context.Talhoes, "Id", "Id");
-            ViewData["IdTipoLancamento"] = new SelectList(_context.TiposLancamento, "Id", "Descricao");
-            return View();
-        }
-
-        // POST: EstimativaColheita/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DataLancamento,Caixas,IdEncarregado,IdContrato,IdTalhao,IdEstimativaMotivo,IdTipoLancamento")] EstimativaColheitaModel estimativaColheitaModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(estimativaColheitaModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdContrato"] = new SelectList(_context.Contratos, "Id", "Propriedade", estimativaColheitaModel.IdContrato);
-            ViewData["IdEncarregado"] = new SelectList(_context.Encarregados, "Id", "Nome", estimativaColheitaModel.IdEncarregado);
-            ViewData["IdEstimativaMotivo"] = new SelectList(_context.EstimativaMotivos, "Id", "Descricao", estimativaColheitaModel.IdEstimativaMotivo);
-            ViewData["IdTalhao"] = new SelectList(_context.Talhoes, "Id", "Id", estimativaColheitaModel.IdTalhao);
-            ViewData["IdTipoLancamento"] = new SelectList(_context.TiposLancamento, "Id", "Descricao", estimativaColheitaModel.IdTipoLancamento);
-            return View(estimativaColheitaModel);
-        }
-
-        // GET: EstimativaColheita/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.EstimativasColheita == null)
-            {
-                return NotFound();
-            }
-
-            var estimativaColheitaModel = await _context.EstimativasColheita.FindAsync(id);
-            if (estimativaColheitaModel == null)
-            {
-                return NotFound();
-            }
-            ViewData["IdContrato"] = new SelectList(_context.Contratos, "Id", "Propriedade", estimativaColheitaModel.IdContrato);
-            ViewData["IdEncarregado"] = new SelectList(_context.Encarregados, "Id", "Nome", estimativaColheitaModel.IdEncarregado);
-            ViewData["IdEstimativaMotivo"] = new SelectList(_context.EstimativaMotivos, "Id", "Descricao", estimativaColheitaModel.IdEstimativaMotivo);
-            ViewData["IdTalhao"] = new SelectList(_context.Talhoes, "Id", "Id", estimativaColheitaModel.IdTalhao);
-            ViewData["IdTipoLancamento"] = new SelectList(_context.TiposLancamento, "Id", "Descricao", estimativaColheitaModel.IdTipoLancamento);
-            return View(estimativaColheitaModel);
-        }
-
-        // POST: EstimativaColheita/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DataLancamento,Caixas,IdEncarregado,IdContrato,IdTalhao,IdEstimativaMotivo,IdTipoLancamento")] EstimativaColheitaModel estimativaColheitaModel)
-        {
-            if (id != estimativaColheitaModel.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(estimativaColheitaModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EstimativaColheitaModelExists(estimativaColheitaModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdContrato"] = new SelectList(_context.Contratos, "Id", "Propriedade", estimativaColheitaModel.IdContrato);
-            ViewData["IdEncarregado"] = new SelectList(_context.Encarregados, "Id", "Nome", estimativaColheitaModel.IdEncarregado);
-            ViewData["IdEstimativaMotivo"] = new SelectList(_context.EstimativaMotivos, "Id", "Descricao", estimativaColheitaModel.IdEstimativaMotivo);
-            ViewData["IdTalhao"] = new SelectList(_context.Talhoes, "Id", "Id", estimativaColheitaModel.IdTalhao);
-            ViewData["IdTipoLancamento"] = new SelectList(_context.TiposLancamento, "Id", "Descricao", estimativaColheitaModel.IdTipoLancamento);
-            return View(estimativaColheitaModel);
-        }
-
-        // GET: EstimativaColheita/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.EstimativasColheita == null)
-            {
-                return NotFound();
-            }
-
-            var estimativaColheitaModel = await _context.EstimativasColheita
-                .Include(e => e.Contrato)
-                .Include(e => e.Encarregado)
-                .Include(e => e.EstimativaMotivo)
-                .Include(e => e.Talhao)
-                .Include(e => e.TipoLancamento)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (estimativaColheitaModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(estimativaColheitaModel);
-        }
-
-        // POST: EstimativaColheita/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.EstimativasColheita == null)
-            {
-                return Problem("Entity set 'AppDbContext.EstimativasColheita'  is null.");
-            }
-            var estimativaColheitaModel = await _context.EstimativasColheita.FindAsync(id);
-            if (estimativaColheitaModel != null)
-            {
-                _context.EstimativasColheita.Remove(estimativaColheitaModel);
-            }
+            ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta");
+            ViewData["IdTalhao"] = new SelectList(_talhao.ConsultarTalhoesAtivosAsync(), "Id", "DescricaoCompleta");
+            ViewData["IdEncarregado"] = new SelectList(_encarregado.ConsultarEncarregadosAtivosAsync(), "Id", "DescricaoCompleta");
+            ViewData["IdEstimativaMotivo"] = new SelectList(_estimativaMotivo.ConsultarMotivosEstimativasAtivosAsync(), "Id", "Descricao");
+            ViewData["IdTipoLancamento"] = new SelectList(_tipoLancamento.ConsultarTiposLancamentoAsync(), "Id", "Descricao");
             
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View(new EstimativaColheitaModel());
         }
-
-        private bool EstimativaColheitaModelExists(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,DataLancamento,Caixas,IdEncarregado,IdContrato,IdTalhao,IdEstimativaMotivo,IdTipoLancamento")] EstimativaColheitaModel estimativaColheita)
         {
-          return _context.EstimativasColheita.Any(e => e.Id == id);
+            if (ModelState.IsValid)
+            {
+                await _estimativaColheita.InserirEstimativaColheitaAsync(estimativaColheita);
+
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta", estimativaColheita.IdContrato);
+            ViewData["IdTalhao"] = new SelectList(_talhao.ConsultarTalhoesAtivosAsync(), "Id", "DescricaoCompleta", estimativaColheita.IdTalhao);
+            ViewData["IdEncarregado"] = new SelectList(_encarregado.ConsultarEncarregadosAtivosAsync(), "Id", "DescricaoCompleta", estimativaColheita.IdEncarregado);
+            ViewData["IdEstimativaMotivo"] = new SelectList(_estimativaMotivo.ConsultarMotivosEstimativasAtivosAsync(), "Id", "Descricao", estimativaColheita.IdEstimativaMotivo);
+            ViewData["IdTipoLancamento"] = new SelectList(_tipoLancamento.ConsultarTiposLancamentoAsync(), "Id", "Descricao", estimativaColheita.IdTipoLancamento);
+            return View(estimativaColheita);
         }
     }
 }

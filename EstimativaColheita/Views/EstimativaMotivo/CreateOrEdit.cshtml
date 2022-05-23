@@ -1,4 +1,4 @@
-﻿@model EstimativaColheita.Models.MotivoAlteracaoModel
+﻿@model EstimativaColheita.Models.EstimativaMotivoModel
 
 @{
     ViewData["Title"] = "Motivos";
@@ -10,22 +10,23 @@
         else { <text><h6 card-title>Editar registro</h6></text> }
     </div>
     <div class="card-body">
-        <form asp-action="CreateOrEdit">
+        <form class="row g-3" asp-action="CreateOrEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id"/>
-            <div class="form-group">
+
+            <div class="col-md-12">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control form-control-sm" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <hr />
-            <div class="btn-group">
-                <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
-                <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
+            </div>            
+            <div class="col-md-12">
+                <div class="btn-group">
+                    <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
+                    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
+                </div>
             </div>
         </form>
     </div>
-    <div class="card-footer"></div>
 </div>
 
 @section Scripts {

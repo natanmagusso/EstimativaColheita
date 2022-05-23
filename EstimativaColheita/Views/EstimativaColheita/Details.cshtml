@@ -1,0 +1,67 @@
+﻿@model EstimativaColheita.Models.EstimativaColheitaModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>EstimativaColheitaModel</h4>
+    <hr />
+    <dl class="row">
+        <ul class="list-group">
+            <li class="list-group-item">@Html.DisplayNameFor(model => model.DataLancamento) + ': ' + @Html.DisplayFor(model => model.DataLancamento)</li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"></li>
+            <li class="list-group-item"></li>
+        </ul>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataLancamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataLancamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Caixas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Caixas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Encarregado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Encarregado.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Contrato)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Contrato.Propriedade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Talhao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Talhao.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstimativaMotivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstimativaMotivo.Descricao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoLancamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoLancamento.Descricao)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EstimativaColheita.Models.MotivoAlteracaoModel>
+﻿@model IEnumerable<EstimativaColheita.Models.EstimativaMotivoModel>
 
 @{
     ViewData["Title"] = "Motivos";
@@ -6,7 +6,7 @@
 
 <div class="card border-secondary mb-3">
     <div class="card-header">
-        <h6 card-title>Lista de motivos de alteração</h6>
+        <h6 card-title>Lista de motivos</h6>
     </div>
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
@@ -19,8 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
+                @foreach (var item in Model) {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
                         <td>

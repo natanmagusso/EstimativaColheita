@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstimativaColheita.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220520001554_CreateInicial")]
+    [Migration("20220523000829_CreateInicial")]
     partial class CreateInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,9 +124,6 @@ namespace EstimativaColheita.Migrations
                     b.Property<int>("Caixas")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DataLancamento")
                         .HasColumnType("datetime2");
 
@@ -136,7 +133,7 @@ namespace EstimativaColheita.Migrations
                     b.Property<int>("IdEncarregado")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMotivoAlteracao")
+                    b.Property<int>("IdEstimativaMotivo")
                         .HasColumnType("int");
 
                     b.Property<int>("IdTalhao")
@@ -151,13 +148,33 @@ namespace EstimativaColheita.Migrations
 
                     b.HasIndex("IdEncarregado");
 
-                    b.HasIndex("IdMotivoAlteracao");
+                    b.HasIndex("IdEstimativaMotivo");
 
                     b.HasIndex("IdTalhao");
 
                     b.HasIndex("IdTipoLancamento");
 
                     b.ToTable("EstimativasColheita", (string)null);
+                });
+
+            modelBuilder.Entity("EstimativaColheita.Models.EstimativaMotivoModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EstimativaMotivos", (string)null);
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.FiscalCampoModel", b =>
@@ -185,26 +202,6 @@ namespace EstimativaColheita.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FiscaisCampo", (string)null);
-                });
-
-            modelBuilder.Entity("EstimativaColheita.Models.MotivoAlteracaoModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MotivosAlteracoes", (string)null);
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.TalhaoModel", b =>
@@ -342,9 +339,9 @@ namespace EstimativaColheita.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("EstimativaColheita.Models.MotivoAlteracaoModel", "MotivoAlteracao")
+                    b.HasOne("EstimativaColheita.Models.EstimativaMotivoModel", "EstimativaMotivo")
                         .WithMany("Estimativas")
-                        .HasForeignKey("IdMotivoAlteracao")
+                        .HasForeignKey("IdEstimativaMotivo")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -364,7 +361,7 @@ namespace EstimativaColheita.Migrations
 
                     b.Navigation("Encarregado");
 
-                    b.Navigation("MotivoAlteracao");
+                    b.Navigation("EstimativaMotivo");
 
                     b.Navigation("Talhao");
 
@@ -406,14 +403,14 @@ namespace EstimativaColheita.Migrations
                     b.Navigation("Estimativas");
                 });
 
+            modelBuilder.Entity("EstimativaColheita.Models.EstimativaMotivoModel", b =>
+                {
+                    b.Navigation("Estimativas");
+                });
+
             modelBuilder.Entity("EstimativaColheita.Models.FiscalCampoModel", b =>
                 {
                     b.Navigation("Encarregados");
-                });
-
-            modelBuilder.Entity("EstimativaColheita.Models.MotivoAlteracaoModel", b =>
-                {
-                    b.Navigation("Estimativas");
                 });
 
             modelBuilder.Entity("EstimativaColheita.Models.TalhaoModel", b =>

@@ -26,6 +26,20 @@ namespace EstimativaColheita.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EstimativaMotivos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descricao = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EstimativaMotivos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FiscaisCampo",
                 columns: table => new
                 {
@@ -39,20 +53,6 @@ namespace EstimativaColheita.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FiscaisCampo", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MotivosAlteracoes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MotivosAlteracoes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,11 +177,10 @@ namespace EstimativaColheita.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataLancamento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Caixas = table.Column<int>(type: "int", nullable: false),
-                    DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdEncarregado = table.Column<int>(type: "int", nullable: false),
                     IdContrato = table.Column<int>(type: "int", nullable: false),
                     IdTalhao = table.Column<int>(type: "int", nullable: false),
-                    IdMotivoAlteracao = table.Column<int>(type: "int", nullable: false),
+                    IdEstimativaMotivo = table.Column<int>(type: "int", nullable: false),
                     IdTipoLancamento = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -200,9 +199,9 @@ namespace EstimativaColheita.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_EstimativasColheita_MotivosAlteracoes_IdMotivoAlteracao",
-                        column: x => x.IdMotivoAlteracao,
-                        principalTable: "MotivosAlteracoes",
+                        name: "FK_EstimativasColheita_EstimativaMotivos_IdEstimativaMotivo",
+                        column: x => x.IdEstimativaMotivo,
+                        principalTable: "EstimativaMotivos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -260,9 +259,9 @@ namespace EstimativaColheita.Migrations
                 column: "IdEncarregado");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EstimativasColheita_IdMotivoAlteracao",
+                name: "IX_EstimativasColheita_IdEstimativaMotivo",
                 table: "EstimativasColheita",
-                column: "IdMotivoAlteracao");
+                column: "IdEstimativaMotivo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EstimativasColheita_IdTalhao",
@@ -297,7 +296,7 @@ namespace EstimativaColheita.Migrations
                 name: "Encarregados");
 
             migrationBuilder.DropTable(
-                name: "MotivosAlteracoes");
+                name: "EstimativaMotivos");
 
             migrationBuilder.DropTable(
                 name: "Talhoes");

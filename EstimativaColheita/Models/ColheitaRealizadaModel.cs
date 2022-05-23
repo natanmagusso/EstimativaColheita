@@ -51,6 +51,16 @@ namespace EstimativaColheita.Models
         /// Classe talhão.
         /// </summary>
         public TalhaoModel Talhao { get; set; }
+
+        /// <summary>
+        /// Campo id do encarregado.
+        /// </summary>
+        [ForeignKey("IdEncarregado")]
+        public int IdEncarregado { get; set; }
+        /// <summary>
+        /// Classe encarregado.
+        /// </summary>
+        public EncarregadoModel Encarregado { get; set; }
     }
 
     /// <summary>
@@ -71,6 +81,11 @@ namespace EstimativaColheita.Models
             builder.HasOne<TalhaoModel>(col => col.Talhao)
                 .WithMany(tal => tal.ColheitasRealizadas)
                 .HasForeignKey(col => col.IdTalhao)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne<EncarregadoModel>(col => col.Encarregado)
+                .WithMany(enc => enc.ColheitasRealizadas)
+                .HasForeignKey(col => col.IdEncarregado)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

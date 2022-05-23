@@ -49,7 +49,11 @@ namespace EstimativaColheita.Models
     {
         public void Configure(EntityTypeBuilder<EstimativaMotivoModel> builder)
         {
-            builder.ToTable("EstimativaMotivos");
+            builder.ToTable("EstimativaMotivos").
+                HasData(new List<TipoLancamentoModel>() {
+                    new TipoLancamentoModel(1, "APONTAMENTO DE CAMPO")
+            });
+
             builder.Property(mot => mot.Descricao).HasColumnType("varchar(200)").IsRequired();
             builder.Property(mot => mot.Ativo).HasColumnType("bit");
         }

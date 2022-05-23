@@ -1,60 +1,40 @@
 ﻿@model EstimativaColheita.Models.EstimativaColheitaModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Estimativas";
 }
 
-<h1>Details</h1>
+<div class="card border-secondary mb-3">
+    <div class="card-header">
+        <h6 card-title>Detalhamento da estimativa</h6>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DataLancamento)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.DataLancamento)</dd>
+            
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Caixas)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Caixas)</dd>
 
-<div>
-    <h4>EstimativaColheitaModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataLancamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataLancamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Caixas)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Caixas)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Encarregado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Encarregado.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contrato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contrato.Propriedade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Talhao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Talhao.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EstimativaMotivo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EstimativaMotivo.Descricao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoLancamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoLancamento.Descricao)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Encarregado.DescricaoCompleta)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Encarregado.DescricaoCompleta)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Contrato.DescricaoCompleta)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Contrato.DescricaoCompleta)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Talhao.DescricaoCompleta)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Talhao.CodigoInterno)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.EstimativaMotivo.DescricaoCompleta)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.EstimativaMotivo.Descricao)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TipoLancamento.DescricaoCompleta)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.TipoLancamento.Descricao)</dd>
+        </dl>
+        <div class="col-md-12">
+            <div class="btn-group">
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Voltar para os lançamentos</a>
+            </div>
+        </div>
+    </div>
 </div>

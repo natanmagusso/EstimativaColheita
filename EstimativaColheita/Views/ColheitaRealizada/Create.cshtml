@@ -1,7 +1,7 @@
 ﻿@model EstimativaColheita.Models.ColheitaRealizadaModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Apontamentos";
 }
 
 <div class="card border-secondary mb-3">
@@ -18,21 +18,21 @@
             </div>-->
             <div class="col-md-2">
                 <label asp-for="Caixas" class="control-label"></label>
-                <input asp-for="Caixas" class="form-control form-control-sm" />
+                <input asp-for="Caixas" class="form-control form-control-sm" type="number" min='0' />
                 <span asp-validation-for="Caixas" class="text-danger"></span>
             </div>
-            <div class="col-md-5">
-                <label asp-for="IdContrato" class="control-label"></label>
-                <select asp-for="IdContrato" class ="form-select form-select-sm" asp-items="ViewBag.IdContrato"></select>
+            <div class="col-md-10">
+                <label asp-for="Encarregado.DescricaoCompleta" class="control-label"></label>
+                <select asp-for="IdEncarregado" class="form-select form-select-sm" asp-items="ViewBag.IdEncarregado"></select>
             </div>
-            <div class="col-md-5">
-                <label asp-for="IdTalhao" class="control-label"></label>
-                <select asp-for="IdTalhao" class ="form-select form-select-sm" asp-items="ViewBag.IdTalhao"></select>
+            <div class="col-md-6">
+                <label asp-for="Contrato.DescricaoCompleta" class="control-label"></label>
+                <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato"></select>
             </div>
-            <div class="col-md-12">
-                <label asp-for="IdEncarregado" class="control-label"></label>
-                <select asp-for="IdEncarregado" class ="form-select form-select-sm" asp-items="ViewBag.IdEncarregado"></select>
-            </div>
+            <div class="col-md-6">
+                <label asp-for="Talhao.DescricaoCompleta" class="control-label"></label>
+                <select asp-for="IdTalhao" class="form-select form-select-sm" asp-items="ViewBag.IdTalhao"></select>
+            </div>            
             <div class="col-md-12">
                 <div class="btn-group">
                     <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />

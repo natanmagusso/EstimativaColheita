@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EstimativaColheita.Models.EstimativaColheitaModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Estimativas";
 }
 
 <div class="card border-secondary mb-3">
@@ -28,10 +28,10 @@
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
                         <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Talhao.DescricaoCompleta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
                         <td>@Html.DisplayFor(modelItem => item.Caixas)</td>
                         <td>@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
-                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalhamento</a></td>
+                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Mais detalhes</a></td>
                     </tr>
                 }
             </tbody>

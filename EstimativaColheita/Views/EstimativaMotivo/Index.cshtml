@@ -24,18 +24,21 @@
                         <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
                         <td>
                             <div class="btn-group">
-                                @if (item.Ativo == true)
+                                @if (item.Id > 1)
                                 {
-                                    <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
-                                    <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
-                                    <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
-                                }
-                                else
-                                {
-                                    <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
-                                    <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
-                                    <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
-                                }                                
+                                    @if (item.Ativo == true)
+                                    {
+                                        <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
+                                        <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
+                                        <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
+                                        <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
+                                        <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                                    }                                    
+                                }                                                                
                             </div>                
                         </td>
                     </tr>

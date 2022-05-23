@@ -32,7 +32,8 @@ namespace EstimativaColheita.Repositories.Services
                 .ColheitasRealizadas
                 .AsNoTracking()
                 .Include(col => col.Contrato)
-                .Include(col => col.Talhao)                
+                .Include(col => col.Talhao)
+                .Include(col => col.Encarregado)
                 .OrderBy(col => col.DataLancamento)
                 .ToListAsync();
         }

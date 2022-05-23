@@ -31,12 +31,14 @@
                 <span asp-validation-for="QuantidadePes" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="IdContrato" class="control-label"></label>
-                <select asp-for="IdContrato" class ="form-select form-select-sm" asp-items="ViewBag.IdContrato"></select>
+                <label asp-for="Contrato.DescricaoCompleta" class="control-label"></label>
+                @if (Model.Id == 0) { <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato"></select> }
+                else { <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" disabled></select> }
+                
             </div>
             <div class="col-md-6">
-                <label asp-for="IdVariedade" class="control-label"></label>
-                <select asp-for="IdVariedade" class ="form-select form-select-sm" asp-items="ViewBag.IdVariedade"></select>
+                <label asp-for="Variedade.DescricaoCompleta" class="control-label"></label>
+                <select asp-for="IdVariedade" class="form-select form-select-sm" asp-items="ViewBag.IdVariedade"></select>
             </div>
             <div class="col-md-12">
                 <div class="btn-group">

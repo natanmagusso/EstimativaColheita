@@ -31,9 +31,9 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .EstimativasColheita
                 .AsNoTracking()
-                .Include(est => est.Encarregado)
                 .Include(est => est.Contrato)
                 .Include(est => est.Talhao)
+                .Include(est => est.Encarregado)
                 .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .OrderBy(est => est.DataLancamento)
@@ -49,9 +49,9 @@ namespace EstimativaColheita.Repositories.Services
             return await _appContext
                 .EstimativasColheita
                 .AsNoTracking()
-                .Include(est => est.Encarregado)
                 .Include(est => est.Contrato)
                 .Include(est => est.Talhao)
+                .Include(est => est.Encarregado)
                 .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .FirstOrDefaultAsync(est => est.Id == id);

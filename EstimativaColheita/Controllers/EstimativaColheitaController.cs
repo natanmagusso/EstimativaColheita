@@ -40,7 +40,7 @@ namespace EstimativaColheita.Controllers
             ViewData["IdEncarregado"] = new SelectList(_encarregado.ConsultarEncarregadosAtivosAsync(), "Id", "DescricaoCompleta");
             ViewData["IdEstimativaMotivo"] = new SelectList(_estimativaMotivo.ConsultarMotivosEstimativasAtivosAsync(), "Id", "Descricao");
             ViewData["IdTipoLancamento"] = new SelectList(_tipoLancamento.ConsultarTiposLancamentoAsync(), "Id", "Descricao");
-            
+
             return View(new EstimativaColheitaModel());
         }
         [HttpPost]

@@ -32,13 +32,23 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="Contrato.DescricaoCompleta" class="control-label"></label>
-                @if (Model.Id == 0) { <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato"></select> }
-                else { <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" disabled></select> } 
+                @if (Model.Id == 0) 
+                {
+                    <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                        <option value='0' disabled selected>Selecione...</option>
+                    </select>
+                }
+                else 
+                {
+                    <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" disabled>
+                        <option value='0' disabled selected>Selecione...</option>
+                    </select>
+                } 
             </div>            
             <div class="col-md-6">
                 <label asp-for="Variedade.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdVariedade" class="form-select form-select-sm" asp-items="ViewBag.IdVariedade">
-                    <option value="">Selecione...</option>
+                <select asp-for="IdVariedade"  class="form-select form-select-sm" asp-items="ViewBag.IdVariedade">
+                    <option value='0' disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-12">

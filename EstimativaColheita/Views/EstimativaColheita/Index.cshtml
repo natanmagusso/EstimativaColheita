@@ -26,12 +26,23 @@
             <tbody>
                 @foreach (var item in Model) {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Caixas)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
-                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Mais detalhes</a></td>
+                        @if (item.Caixas < 0)
+                        {
+                            <td style="color: red">@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                            <td style="color: red">@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
+                            <td style="color: red">@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                            <td style="color: red">@Html.DisplayFor(modelItem => item.Caixas)</td>
+                            <td style="color: red">@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
+                        }
+                        else
+                        {
+                            <td style="color: green">@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                            <td style="color: green">@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
+                            <td style="color: green">@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                            <td style="color: green">@Html.DisplayFor(modelItem => item.Caixas)</td>
+                            <td style="color: green">@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>                        
+                        }
+                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Mais detalhes</a></td> 
                     </tr>
                 }
             </tbody>

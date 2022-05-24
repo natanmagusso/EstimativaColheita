@@ -41,6 +41,8 @@ namespace EstimativaColheita.Models
         /// Campo id do fiscal de campo.
         /// </summary>
         [ForeignKey("IdFiscalCampo")]
+        [Required(ErrorMessage = "Coordenador obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Campo inválido")]
         public int IdFiscalCampo { get; set; }
 
         /// <summary>

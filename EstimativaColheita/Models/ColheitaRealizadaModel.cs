@@ -29,6 +29,7 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Caixas obrigatórias")]
         [Range(1, int.MaxValue, ErrorMessage = "Caixas inválidas")]
+        [DisplayFormat(DataFormatString = "{0:n1}")]
         [Display(Name = "Caixas")]
         public int Caixas { get; set; }
 
@@ -36,18 +37,24 @@ namespace EstimativaColheita.Models
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
+        [Required(ErrorMessage = "Contrato obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Campo inválido")]
         public int IdContrato { get; set; }
 
         /// <summary>
         /// Campo id do talhão.
         /// </summary>
         [ForeignKey("IdTalhao")]
+        [Required(ErrorMessage = "Talhão obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "Campo inválido")]
         public int IdTalhao { get; set; }
 
         /// <summary>
         /// Campo id do encarregado.
         /// </summary>
         [ForeignKey("IdEncarregado")]
+        [Required(ErrorMessage = "Turma obrigatória")]
+        [Range(1, int.MaxValue, ErrorMessage = "Campo inválido")]
         public int IdEncarregado { get; set; }
 
         /// <summary>

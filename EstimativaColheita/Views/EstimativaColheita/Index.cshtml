@@ -26,26 +26,46 @@
             <tbody>
                 @foreach (var item in Model) {
                     <tr>
-                        @if (item.Caixas < 0)
-                        {
-                            <td style="color: red">@Html.DisplayFor(modelItem => item.DataLancamento)</td>
-                            <td style="color: red">@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
-                            <td style="color: red">@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
-                            <td style="color: red">@Html.DisplayFor(modelItem => item.Caixas)</td>
-                            <td style="color: red">@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                        @if (item.Caixas < 0) {<td style="color: red">@Html.DisplayFor(modelItem => item.Caixas)</td>
                         }
-                        else
-                        {
-                            <td style="color: green">@Html.DisplayFor(modelItem => item.DataLancamento)</td>
-                            <td style="color: green">@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
-                            <td style="color: green">@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                        else {
                             <td style="color: green">@Html.DisplayFor(modelItem => item.Caixas)</td>
-                            <td style="color: green">@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>                        
-                        }
+                        }                                                
+                        <td>@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
                         <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Mais detalhes</a></td> 
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
+    <div class="card-footer">
+        <div>
+            @{ var totalEstimado = 0; var totalColhido = 0; var saldoColher = 0; }
+
+            @foreach (var item in Model.Where(g => g.IdTipoLancamento == 1).GroupBy(g => g.IdTipoLancamento)) 
+            {
+                foreach (var estimado in item.ToList()) 
+                {
+                    totalEstimado += estimado.Caixas;
+                }
+                saldoColher = totalEstimado;                
+            }
+
+            @foreach (var item in Model.Where(g => g.IdTipoLancamento == 2).GroupBy(g => g.IdTipoLancamento)) 
+            {
+                foreach (var colhido in item.ToList())
+                {
+                    totalColhido += colhido.Caixas;
+                    saldoColher -= colhido.Caixas;
+                }
+            }
+
+            <h6 card-title style="color: blue">Estimado: @totalEstimado</h6>
+            <h6 card-title style="color: green">Colhido: @totalColhido</h6>
+            <h6 card-title style="color: black">Saldo a colher: @saldoColher</h6>
+        </div>
     </div>
 </div>

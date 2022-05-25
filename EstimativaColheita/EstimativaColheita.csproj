@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Scripts\talhaoColheitaRealizada.js" />
+    <Content Remove="wwwroot\scripts\talhaoEstimativaColheita.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\scripts\talhaoEstimativaColheita.js" />
+    <None Include="wwwroot\scripts\talhaoColheitaRealizada.js" />
   </ItemGroup>
 
   <ItemGroup>

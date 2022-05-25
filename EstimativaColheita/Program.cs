@@ -2,11 +2,13 @@ using EstimativaColheita.Persistence;
 using EstimativaColheita.Repositories.Interfaces;
 using EstimativaColheita.Repositories.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 // Registrar os serviçoes dos repositoirios
 builder.Services.AddTransient<IColheitaRealizada, ColheitaRealizadaService>();

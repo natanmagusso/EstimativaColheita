@@ -29,7 +29,7 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Caixas obrigatórias")]
         [Range(1, int.MaxValue, ErrorMessage = "Caixas inválidas")]
-        [DisplayFormat(DataFormatString = "{0:n1}")]
+        [DisplayFormat(DataFormatString = "{0:#}")]
         [Display(Name = "Caixas")]
         public int Caixas { get; set; }
 

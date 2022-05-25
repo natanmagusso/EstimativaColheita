@@ -23,26 +23,26 @@
             </div>
             <div class="col-md-5">
                 <label asp-for="Contrato.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
-                    <option value='0' disabled selected>Selecione...</option>
+                <select asp-for="IdContrato" id="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                    <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-5">
                 <label asp-for="Talhao.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdTalhao" class="form-select form-select-sm" asp-items="ViewBag.IdTalhao">
-                    <option value='0' disabled selected>Selecione...</option>
+                <select asp-for="IdTalhao" id="IdTalhao" class="form-select form-select-sm" asp-items="ViewBag.IdTalhao">
+                    <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>   
             <div class="col-md-5">
                 <label asp-for="Encarregado.DescricaoCompleta" class="control-label"></label>
                 <select asp-for="IdEncarregado" class="form-select form-select-sm" asp-items="ViewBag.IdEncarregado">
-                    <option value='0' disabled selected>Selecione...</option>
+                    <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-7">
                 <label asp-for="EstimativaMotivo.DescricaoCompleta" class="control-label"></label>
                 <select asp-for="IdEstimativaMotivo" class="form-select form-select-sm" asp-items="ViewBag.IdEstimativaMotivo">
-                    <option value='0' disabled selected>Selecione...</option>
+                    <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-12">

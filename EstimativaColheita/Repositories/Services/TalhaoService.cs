@@ -63,7 +63,8 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(tal => tal.Contrato)
                 .Include(tal => tal.Variedade)
                 .Where(tal => tal.Ativo == true && tal.IdContrato == codigoContrato)
-                .OrderBy(tal => tal.CodigoInterno);
+                .OrderBy(tal => tal.CodigoInterno)
+                .ToList();
         }
 
         /// <summary>

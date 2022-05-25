@@ -9,7 +9,7 @@
 })
 
 function ListarTalhoes(value) {
-    var url = "/ColheitaRealizada/ListarTalhoesColheitaRealizada";
+    var url = "/EstimativaColheita/ListarTalhoesColheitaRealizada";
     var data = { contrato: value }
 
     $("#IdTalhao").empty();

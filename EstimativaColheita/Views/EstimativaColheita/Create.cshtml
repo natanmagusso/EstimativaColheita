@@ -23,13 +23,13 @@
             </div>
             <div class="col-md-5">
                 <label asp-for="Contrato.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdContrato" id="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                <select asp-for="IdContrato" id="IdContratoEstimativaColheita" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
                     <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-5">
                 <label asp-for="Talhao.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdTalhao" id="IdTalhao" class="form-select form-select-sm" asp-items="ViewBag.IdTalhao">
+                <select asp-for="IdTalhao" id="IdTalhaoEstimativaColheita" class="form-select form-select-sm" asp-items="ViewBag.IdTalhao">
                     <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>   
@@ -46,10 +46,11 @@
                 </select>
             </div>
             <div class="col-md-12">
-                <div class="btn-group">
-                    <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
-                    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
-                </div>
+                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Salvar</button>
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar</a>
+                <!--<input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />-->
+                <!--Agrupar botões-->
+                <!--<div class="btn-group"></div>-->
             </div>
         </form>
     </div>

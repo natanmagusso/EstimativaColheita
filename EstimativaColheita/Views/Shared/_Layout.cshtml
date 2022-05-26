@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EstimativaColheita.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -18,10 +19,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Página inicial</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp; Página inicial</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownCAD" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownCAD" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp; Cadastros</a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownCAD">
                                 <li><a class="dropdown-item text-light" asp-area="" asp-controller="Contrato" asp-action="Index">Contratos</a><li>
                                 <li><a class="dropdown-item text-light" asp-area="" asp-controller="Talhao" asp-action="Index">Talhões</a><li>
@@ -32,7 +33,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownCOL" role="button" data-bs-toggle="dropdown" aria-expanded="false">Colheitas</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownCOL" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-leaf" aria-hidden="true"></i>&nbsp; Colheitas</a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownCOL">
                                 <li><a class="dropdown-item text-light" asp-area="" asp-controller="ColheitaRealizada" asp-action="Index">Apontamento</a><li>
                                 <li><a class="dropdown-item text-light" asp-area="" asp-controller="EstimativaColheita" asp-action="Index">Estimativa</a><li>

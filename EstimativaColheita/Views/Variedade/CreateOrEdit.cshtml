@@ -26,10 +26,8 @@
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div class="col-md-12">
-                <div class="btn-group">
-                    <input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />
-                    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">Cancelar</a>
-                </div>
+                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Salvar</button>
+                <a class="btn btn-outline-secondary btn-sm" asp-action="Index"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar</a>
             </div>
         </form>
     </div>

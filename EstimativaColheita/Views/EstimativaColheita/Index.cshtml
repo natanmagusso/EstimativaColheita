@@ -9,8 +9,8 @@
         <h6 card-title>Lista de estimativa de colheita</h6>
     </div>
     <div class="card-body">
-        <a class="btn btn-outline-success btn-sm" asp-action="Create">Novo registro</a>
-        <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index">Motivos da estimativa</a>
+        <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
+        <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Motivos da estimativa</a>
         <table class="table table-sm table-hover table caption-top">
             <caption />
             <thead>
@@ -32,7 +32,7 @@
                         @if (item.Caixas < 0) {<td style="color: red">@Html.DisplayFor(modelItem => item.Caixas)</td> }
                         else { <td style="color: green">@Html.DisplayFor(modelItem => item.Caixas)</td> }                                                
                         <td>@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
-                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Mais detalhes</a></td> 
+                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Mais informações</a></td> 
                     </tr>
                 }
             </tbody>

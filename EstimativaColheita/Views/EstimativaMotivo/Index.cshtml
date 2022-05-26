@@ -9,7 +9,8 @@
         <h6 card-title>Lista de motivos</h6>
     </div>
     <div class="card-body">
-        <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit">Novo registro</a>
+        <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
+        <a class="btn btn-outline-secondary btn-sm" asp-area="" asp-controller="EstimativaColheita" asp-action="Index"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Voltar para a estimativa</a>
         <table class="table table-sm table-hover table caption-top">
             <caption />
             <thead>
@@ -22,24 +23,22 @@
                 @foreach (var item in Model) {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
-                        <td>
-                            <div class="btn-group">
-                                @if (item.Id > 1)
+                        <td>                            
+                            @if (item.Id > 1)
+                            {
+                                @if (item.Ativo == true)
                                 {
-                                    @if (item.Ativo == true)
-                                    {
-                                        <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
-                                        <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
-                                        <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">Editar</a>
-                                        <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">Desabilitar</a>
-                                        <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
-                                    }                                    
-                                }                                                                
-                            </div>                
+                                    <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id"><i class="fa fa-toggle-off" aria-hidden="true"></i>&nbsp;Desabilitar</a>
+                                    <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id"><i class="fa fa-toggle-on" aria-hidden="true"></i>&nbsp;Habilitar</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id"><i class="fa fa-toggle-off" aria-hidden="true"></i>&nbsp;Desabilitar</a>
+                                    <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id"><i class="fa fa-toggle-on" aria-hidden="true"></i>&nbsp;Habilitar</a>
+                                }                                    
+                            }                                            
                         </td>
                     </tr>
                 }

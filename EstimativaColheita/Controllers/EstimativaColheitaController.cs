@@ -36,7 +36,6 @@ namespace EstimativaColheita.Controllers
         public IActionResult Create()
         {
             ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta");
-            ViewData["IdTalhao"] = new SelectList(_talhao.ConsultarTalhoesAtivosAsync(), "Id", "DescricaoCompleta");
             ViewData["IdEncarregado"] = new SelectList(_encarregado.ConsultarEncarregadosAtivosAsync(), "Id", "DescricaoCompleta");
             ViewData["IdEstimativaMotivo"] = new SelectList(_estimativaMotivo.ConsultarMotivosEstimativasAtivosAsync(), "Id", "Descricao");
             ViewData["IdTipoLancamento"] = new SelectList(_tipoLancamento.ConsultarTiposLancamentoAsync(), "Id", "Descricao");
@@ -59,6 +58,12 @@ namespace EstimativaColheita.Controllers
             ViewData["IdEstimativaMotivo"] = new SelectList(_estimativaMotivo.ConsultarMotivosEstimativasAtivosAsync(), "Id", "Descricao", estimativaColheita.IdEstimativaMotivo);
             ViewData["IdTipoLancamento"] = new SelectList(_tipoLancamento.ConsultarTiposLancamentoAsync(), "Id", "Descricao", estimativaColheita.IdTipoLancamento);
             return View(estimativaColheita);
+        }
+        [HttpGet]
+        public IActionResult ListarTalhoesEstimativaColheita(string contrato)
+        {
+            var listaTalhoes = _talhao.ConsultarTalhoesAtivosContratoAsync(Convert.ToInt32(contrato));
+            return new JsonResult(new { resultado = listaTalhoes });
         }
     }
 }

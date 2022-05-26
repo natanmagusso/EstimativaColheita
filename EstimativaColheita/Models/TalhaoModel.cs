@@ -30,7 +30,7 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Ano plantio obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Ano plantio inválido")]
-        [Display(Name = "Ano plantio")]
+        [Display(Name = "Plantio")]
         public int AnoPlantio { get; set; }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Qtde pés obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Qtde pés inválido")]
-        [Display(Name = "Qtde pés")]
+        [Display(Name = "Pés")]
         public int QuantidadePes { get; set; }
 
         /// <summary>

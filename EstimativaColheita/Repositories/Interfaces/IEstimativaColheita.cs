@@ -13,7 +13,14 @@ namespace EstimativaColheita.Repositories.Interfaces
         Task<List<EstimativaColheitaModel>> ConsultarTodasEstimativasColheitaAsync();
 
         /// <summary>
-        /// Método que retorna ocontrato através do id informado.
+        /// Método que retorna as estimtivas de colehita através do contrato e talhão informado.
+        /// </summary>
+        /// <param name="contrato">Id do contrato.</param>
+        /// <param name="talhao">Id do talhão.</param>
+        Task<List<EstimativaColheitaModel>> ConsultarEstimativaColheitaContratoTalhaoAsync(int contrato, int talhao);
+
+        /// <summary>
+        /// Método que retorna a estimativa de colheita através do id informado.
         /// </summary>
         /// <param name="id">Id da estimativa de colheita.</param>
         Task<EstimativaColheitaModel> ConsultarEstimativaColheitaIdAsync(int id);

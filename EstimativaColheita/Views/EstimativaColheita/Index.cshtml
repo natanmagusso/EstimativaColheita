@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EstimativaColheita.Models.EstimativaColheitaModel>
+﻿@using EstimativaColheita.ViewModel
+@model EstimativaColheitaViewModel
 
 @{
     ViewData["Title"] = "Estimativas";
@@ -9,22 +10,44 @@
         <h6 card-title>Lista de estimativa de colheita</h6>
     </div>
     <div class="card-body">
-        <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
-        <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Motivos da estimativa</a>
-        <table class="table table-sm table-hover table caption-top">
+        <form class="row g-3" asp-controller="EstimativaColheita" asp-action="Index" method="get">
+            <div class="d-flex bd-highlight">
+                <div class="p-0 flex-fill bd-highlight">
+                    <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
+                    <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Motivos da estimativa</a>
+                </div>
+                <div class="p-0 flex-fill bd-highlight">
+                    <select id="IdContratoEstimativaColheitaTabela" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                        <option value="" disabled selected>Selecione o contrato...</option>
+                    </select>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="p-0 d-flex flex-row-reverse bd-highlight">
+                    <select id="IdTalhaoEstimativaColheitaTabela" class="form-select form-select-sm">
+                        <option value="" disabled selected>Selecione o talhão...</option>
+                    </select>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="p-0 d-flex flex-row-reverse bd-highlight">
+                    <button id="BuscarDados" class="btn btn-outline-secondary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Buscar estimativas">&nbsp;<i class="fa fa-search" aria-hidden="true"></i>&nbsp;</button>
+                </div>
+            </div>
+        </form>        
+        
+        <table id="tableEstimativas" class="table table-sm table-hover table caption-top">
             <caption />
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.DataLancamento)</th>
-                    <th>@Html.DisplayNameFor(model => model.Contrato.DescricaoCompleta)</th>
-                    <th>@Html.DisplayNameFor(model => model.Talhao.DescricaoCompleta)</th>
-                    <th>@Html.DisplayNameFor(model => model.Caixas)</th>                    
-                    <th>@Html.DisplayNameFor(model => model.EstimativaMotivo.DescricaoCompleta)</th>
-                    <th>Ações</th>
+                    <th>@Html.DisplayName("Lançamento")</th>
+                    <th>@Html.DisplayName("Contrato")</th>
+                    <th>@Html.DisplayName("Talhão")</th>
+                    <th>@Html.DisplayName("Caixas")</th>                    
+                    <th>@Html.DisplayName("Motivo")</th>
+                    <th>@Html.DisplayName("Ações")</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model) {
+                @foreach (var item in Model.Estimativas) {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
                         <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
@@ -32,7 +55,7 @@
                         @if (item.Caixas < 0) {<td style="color: red">@Html.DisplayFor(modelItem => item.Caixas)</td> }
                         else { <td style="color: green">@Html.DisplayFor(modelItem => item.Caixas)</td> }                                                
                         <td>@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
-                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Mais informações</a></td> 
+                        <td><a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Mais informações">&nbsp;<i class="fa fa-info" aria-hidden="true"></i>&nbsp;</a></td> 
                     </tr>
                 }
             </tbody>
@@ -42,16 +65,15 @@
         <div>
             @{ var totalEstimado = 0; var totalColhido = 0; var saldoColher = 0; }
 
-            @foreach (var item in Model.Where(g => g.IdTipoLancamento == 1).GroupBy(g => g.IdTipoLancamento)) 
+            @foreach (var item in Model.Estimativas.Where(g => g.IdTipoLancamento == 1).GroupBy(g => g.IdTipoLancamento)) 
             {
-                foreach (var estimado in item.ToList()) 
-                {
+                foreach (var estimado in item.ToList())                
                     totalEstimado += estimado.Caixas;
-                }
+
                 saldoColher = totalEstimado;                
             }
 
-            @foreach (var item in Model.Where(g => g.IdTipoLancamento == 2).GroupBy(g => g.IdTipoLancamento)) 
+            @foreach (var item in Model.Estimativas.Where(g => g.IdTipoLancamento == 2).GroupBy(g => g.IdTipoLancamento)) 
             {
                 foreach (var colhido in item.ToList())
                 {
@@ -59,10 +81,18 @@
                     saldoColher -= colhido.Caixas;
                 }
             }
-
-            <h6 card-title style="color: blue">Estimado: @totalEstimado</h6>
-            <h6 card-title style="color: green">Colhido: @totalColhido</h6>
-            <h6 card-title style="color: black">Saldo a colher: @saldoColher</h6>
+            <h6>
+                <span card-title style="color: black">Estimado: @totalEstimado</span>
+                <span>&nbsp;|&nbsp;</span>
+                <span card-title style="color: green">Colhido: @totalColhido</span>
+                <span>&nbsp;|&nbsp;</span>
+                <span card-title style="color: blue">Saldo a colher: @saldoColher</span>
+            </h6>
+            
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

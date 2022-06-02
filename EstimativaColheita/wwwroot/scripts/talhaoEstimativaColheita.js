@@ -20,7 +20,6 @@ function ListarTalhoesEstimativaColheita(value) {
         dataType: "json",
         data: data
     }).done(function (data) {
-
         console.log(data);
         if (data.resultado.length > 0) {
             var dadosResult = data.resultado;

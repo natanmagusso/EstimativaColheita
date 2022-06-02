@@ -1,18 +1,18 @@
 ﻿$(document).ready(function () {
-    $("#IdContratoColheitaRealizada").change(function () {
-        var value = $("#IdContratoColheitaRealizada option:selected").val();
+    $("#IdContratoEstimativaColheitaTabela").change(function () {
+        var value = $("#IdContratoEstimativaColheitaTabela option:selected").val();
 
         if (value !== "" || value !== undefined) {
-            ListarTalhoesColheitaRealizada(value);
+            ListarTalhoesEstimativaColheitaTabela(value);
         }
     });
 })
 
-function ListarTalhoesColheitaRealizada(value) {
-    var url = "/ColheitaRealizada/ListarTalhoesColheitaRealizada";
+function ListarTalhoesEstimativaColheitaTabela(value) {
+    var url = "/EstimativaColheita/ListarTalhoesEstimativaColheita";
     var data = { contrato: value }
 
-    $("#IdTalhaoColheitaRealizada").empty();
+    $("#IdTalhaoEstimativaColheitaTabela").empty();
 
     $.ajax({
         url: url,
@@ -24,14 +24,14 @@ function ListarTalhoesColheitaRealizada(value) {
         if (data.resultado.length > 0) {
             var dadosResult = data.resultado;
 
-            $("#IdTalhaoColheitaRealizada").append('<option value="" disabled selected>Selecione...</option>');
+            $("#IdTalhaoEstimativaColheitaTabela").append('<option value="" disabled selected>Selecione o talhão...</option>');
 
             $.each(dadosResult, function (indice, item) {
                 var option = "";
 
                 option = '<option value="' + item["id"] + '">' + item["descricaoCompleta"] + '</option>';
 
-                $("#IdTalhaoColheitaRealizada").append(option);
+                $("#IdTalhaoEstimativaColheitaTabela").append(option);
             })
         }
     })

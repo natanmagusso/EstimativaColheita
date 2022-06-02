@@ -2,6 +2,7 @@
 using EstimativaColheita.Models;
 using EstimativaColheita.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using EstimativaColheita.ViewModel;
 
 namespace EstimativaColheita.Controllers
 {
@@ -23,15 +24,18 @@ namespace EstimativaColheita.Controllers
             _estimativaMotivo = estimativaMotivo;
             _tipoLancamento = tipoLancamento;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string contrato, string talhao)
         {
-            return View(await _estimativaColheita.ConsultarTodasEstimativasColheitaAsync());
+            var viewModel = new EstimativaColheitaViewModel();
+            //viewModel.Estimativas = await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao));
+            viewModel.Estimativas = await _estimativaColheita.ConsultarTodasEstimativasColheitaAsync();
+
+            ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta");
+            return View(viewModel);
         }
         public async Task<IActionResult> Details(int id)
         {
-            var estimativaColheita = await _estimativaColheita.ConsultarEstimativaColheitaIdAsync(id);
-
-            return View(estimativaColheita);
+            return View(await _estimativaColheita.ConsultarEstimativaColheitaIdAsync(id));
         }
         public IActionResult Create()
         {

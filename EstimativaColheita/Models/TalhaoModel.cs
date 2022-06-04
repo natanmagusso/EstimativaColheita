@@ -47,8 +47,6 @@ namespace EstimativaColheita.Models
         /// Campo id do contrato.
         /// </summary>
         [ForeignKey("IdContrato")]
-        [Required(ErrorMessage = "Contrato obrigatório")]
-        [Range(1, int.MaxValue, ErrorMessage = "Campo inválido")]
         public int IdContrato { get; set; }
         /// <summary>
         /// Classe contrato.

@@ -15,18 +15,24 @@
             <input type="hidden" asp-for="Id"/>
 
             <div class="col-md-2">
-                <label asp-for="CodigoInterno" class="control-label"></label>
-                @if (Model.Id == 0) { <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' /> } 
-                else { <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' readonly /> }
+                <label class="control-label">Código</label>
+                @if (Model.Id == 0)
+                {
+                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' />
+                } 
+                else
+                {
+                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' readonly />
+                }
                 <span asp-validation-for="CodigoInterno" class="text-danger"></span>
             </div>
             <div class="col-md-7">
-                <label asp-for="Nome" class="control-label"></label>
+                <label class="control-label">Nome</label>
                 <input asp-for="Nome" class="form-control form-control-sm" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="col-md-3">
-                <label asp-for="Apelido" class="control-label"></label>
+                <label class="control-label">Apelido</label>
                 <input asp-for="Apelido" class="form-control form-control-sm" />
                 <span asp-validation-for="Apelido" class="text-danger"></span>
             </div>

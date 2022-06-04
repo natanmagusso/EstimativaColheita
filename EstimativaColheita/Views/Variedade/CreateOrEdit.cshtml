@@ -6,8 +6,14 @@
 
 <div class="card border-secondary mb-3">
     <div class="card-header">
-        @if (Model.Id == 0) { <text><h6 card-title>Adicionar registro</h6></text> } 
-        else { <text><h6 card-title>Editar registro</h6></text> }
+        @if (Model.Id == 0)
+        {
+            <text><h6 card-title>Adicionar registro</h6></text>
+        }
+        else
+        {
+            <text><h6 card-title>Editar registro</h6></text>
+        }
     </div>
     <div class="card-body">
         <form class="row g-3" asp-action="CreateOrEdit">
@@ -15,13 +21,19 @@
             <input type="hidden" asp-for="Id"/>
             
             <div class="col-md-2">
-                <label asp-for="CodigoInterno" class="control-label"></label>
-                @if (Model.Id == 0) { <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' /> } 
-                else { <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' readonly /> }               
+                <label class="control-label">Código</label>
+                @if (Model.Id == 0)
+                {
+                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' />
+                }
+                else
+                {
+                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' readonly />
+                }               
                 <span asp-validation-for="CodigoInterno" class="text-danger"></span>
             </div>
             <div class="col-md-10">
-                <label asp-for="Descricao" class="control-label"></label>
+                <label class="control-label">Descrição</label>
                 <input asp-for="Descricao" class="form-control form-control-sm" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>

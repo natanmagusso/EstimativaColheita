@@ -40,7 +40,7 @@ namespace EstimativaColheita.Controllers
         {
             return View("List", lista);
         }
-        public async Task<IActionResult> ListarEstimativas(string contrato, string talhao)
+        public async Task<IActionResult> ListarEstimativasContratoTalhao(string contrato, string talhao)
         {
             var lista = await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao));
             return PartialView("List", lista);

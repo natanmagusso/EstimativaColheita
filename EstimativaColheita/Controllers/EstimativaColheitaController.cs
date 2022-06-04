@@ -28,7 +28,7 @@ namespace EstimativaColheita.Controllers
         {
             var viewModel = new EstimativaColheitaViewModel
             {
-                Estimativas = (!string.IsNullOrEmpty(contrato) && !string.IsNullOrEmpty(talhao))
+                Estimativas = (!string.IsNullOrEmpty(contrato) && !string.IsNullOrEmpty(talhao) && talhao != "0")
                 ? await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao))
                 : await _estimativaColheita.ConsultarTodasEstimativasColheitaAsync()
             };
@@ -43,6 +43,11 @@ namespace EstimativaColheita.Controllers
         public async Task<IActionResult> ListarEstimativas(string contrato, string talhao)
         {
             var lista = await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao));
+            return PartialView("List", lista);
+        }
+        public async Task<IActionResult> ListarEstimativasContrato(string contrato)
+        {
+            var lista = await _estimativaColheita.ConsultarEstimativaColheitaContratoAsync(Convert.ToInt32(contrato));
             return PartialView("List", lista);
         }
         public async Task<IActionResult> Details(int id)

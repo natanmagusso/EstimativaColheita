@@ -59,7 +59,7 @@ namespace EstimativaColheita.Controllers
             return View(colheitaRealizada);
         }
         [HttpGet]
-        public IActionResult ListarTalhoesColheitaRealizada(string contrato)
+        public IActionResult ListarTalhoesApontamento(string contrato)
         {
             var listaTalhoes = _talhao.ConsultarTalhoesAtivosContratoAsync(Convert.ToInt32(contrato));
             return new JsonResult(new { resultado = listaTalhoes });

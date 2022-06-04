@@ -26,12 +26,24 @@ namespace EstimativaColheita.Controllers
         }
         public async Task<IActionResult> Index(string contrato, string talhao)
         {
-            var viewModel = new EstimativaColheitaViewModel();
-            //viewModel.Estimativas = await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao));
-            viewModel.Estimativas = await _estimativaColheita.ConsultarTodasEstimativasColheitaAsync();
+            var viewModel = new EstimativaColheitaViewModel
+            {
+                Estimativas = (!string.IsNullOrEmpty(contrato) && !string.IsNullOrEmpty(talhao))
+                ? await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao))
+                : await _estimativaColheita.ConsultarTodasEstimativasColheitaAsync()
+            };
 
             ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta");
             return View(viewModel);
+        }
+        public IActionResult ListarEstimativasTotais(List<EstimativaColheitaModel> lista)
+        {
+            return View("List", lista);
+        }
+        public async Task<IActionResult> ListarEstimativas(string contrato, string talhao)
+        {
+            var lista = await _estimativaColheita.ConsultarEstimativaColheitaContratoTalhaoAsync(Convert.ToInt32(contrato), Convert.ToInt32(talhao));
+            return PartialView("List", lista);
         }
         public async Task<IActionResult> Details(int id)
         {
@@ -64,7 +76,7 @@ namespace EstimativaColheita.Controllers
             return View(estimativaColheita);
         }
         [HttpGet]
-        public IActionResult ListarTalhoesEstimativaColheita(string contrato)
+        public IActionResult ListarTalhoesEstimado(string contrato)
         {
             var listaTalhoes = _talhao.ConsultarTalhoesAtivosContratoAsync(Convert.ToInt32(contrato));
             return new JsonResult(new { resultado = listaTalhoes });

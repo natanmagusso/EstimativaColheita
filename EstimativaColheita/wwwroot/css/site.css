@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.black {
+    color: black !important;
+}
+
+.red {
+    color: red !important;
+}
+
+.green {
+    color: green !important;
+}
+
+.blue {
+    color: blue !important;
+}
+
+.primary {
+    color: #0074d9 !important;
+}

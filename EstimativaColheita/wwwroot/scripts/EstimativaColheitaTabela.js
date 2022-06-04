@@ -2,7 +2,7 @@
     $("#IdTalFiltro").change(function () {
         var talhao = $("#IdTalFiltro option:selected").val();
 
-        if (talhao != "") {
+        if (talhao !== "") {
             var valueContrato = $("#IdConFiltro option:selected").val();
             var valueTalhao = $("#IdTalFiltro option:selected").val();
 
@@ -17,9 +17,19 @@
 });
 
 function Index(valueContrato, valueTalhao) {
-    $.get("/EstimativaColheita/ListarEstimativas?contrato=" + valueContrato + "&talhao=" + valueTalhao, {}, function (data) {
-        var estimativas = $("#estimativas");
-        estimativas.html("");
-        estimativas.html(data);
-    });
+    if (valueTalhao !== "" && valueTalhao > "0") {
+        $.get("/EstimativaColheita/ListarEstimativas?contrato=" + valueContrato + "&talhao=" + valueTalhao, {}, function (data) {
+            var estimativas = $("#estimativas");
+            estimativas.html("");
+            estimativas.html(data);
+        });
+    }
+    else
+    {
+        $.get("/EstimativaColheita/ListarEstimativasContrato?contrato=" + valueContrato, {}, function (data) {
+            var estimativas = $("#estimativas");
+            estimativas.html("");
+            estimativas.html(data);
+        });
+    }
 }

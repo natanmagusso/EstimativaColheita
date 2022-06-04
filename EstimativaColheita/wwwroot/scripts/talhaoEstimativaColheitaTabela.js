@@ -24,7 +24,7 @@ function ListarTalhoesEstimadoFiltro(value) {
         if (data.resultado.length > 0) {
             var dadosResult = data.resultado;
 
-            $("#IdTalFiltro").append('<option value="" selected>Todos os talhões</option>');
+            $("#IdTalFiltro").append('<option value="" disabled selected>Selecione o talhão...</option>');
 
             $.each(dadosResult, function (indice, item) {
                 var option = "";
@@ -33,6 +33,8 @@ function ListarTalhoesEstimadoFiltro(value) {
 
                 $("#IdTalFiltro").append(option);
             })
+
+            $("#IdTalFiltro").append('<option value="0">Todos os talhões</option>');
         }
     })
 }

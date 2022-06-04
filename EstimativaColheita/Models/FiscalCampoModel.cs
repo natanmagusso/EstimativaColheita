@@ -22,21 +22,18 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Código obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Código inválido")]
-        [Display(Name = "Código")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo nome do fiscal de campo.
         /// </summary>
         [Required(ErrorMessage = "Nome obrigatório")]
-        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         /// <summary>
         /// Campo apelido do fiscal de campo.
         /// </summary>
         [Required(ErrorMessage = "Apelido obrigatório")]
-        [Display(Name = "Apelido")]
         public string Apelido { get; set; }
 
         /// <summary>
@@ -53,7 +50,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do fiscal de campo.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Coordenador")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Apelido;
     }
 

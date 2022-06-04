@@ -22,21 +22,18 @@ namespace EstimativaColheita.Models
         /// </summary>        
         [Required(ErrorMessage = "Código obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Código inválido")]
-        [Display(Name = "Código")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo propriedade do contrato.
         /// </summary>
         [Required(ErrorMessage = "Propriedade obrigatória")]
-        [Display(Name = "Propriedade")]
         public string Propriedade { get; set; }
 
         /// <summary>
         /// Campo titular do contrato.
         /// </summary>
         [Required(ErrorMessage = "Titular obrigatório")]
-        [Display(Name = "Titular")]
         public string Titular { get; set; }
 
         /// <summary>
@@ -63,7 +60,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do contrato.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Contrato")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Propriedade;
     }
 

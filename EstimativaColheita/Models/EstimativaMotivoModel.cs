@@ -21,7 +21,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição do motivo de alteração.
         /// </summary>
         [Required(ErrorMessage = "Descrição obrigatória")]
-        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         /// <summary>
@@ -38,7 +37,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do motivo de alteração.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Motivo")]
         public string DescricaoCompleta => Descricao;
     }
 

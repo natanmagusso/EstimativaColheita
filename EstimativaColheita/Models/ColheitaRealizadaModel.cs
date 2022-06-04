@@ -20,7 +20,6 @@ namespace EstimativaColheita.Models
         /// <summary>
         /// Campo data de lançamento da colheita realizada.
         /// </summary>
-        [Display(Name = "Lançamento")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime DataLancamento { get; set; }
 
@@ -30,7 +29,6 @@ namespace EstimativaColheita.Models
         [Required(ErrorMessage = "Caixas obrigatórias")]
         [Range(1, int.MaxValue, ErrorMessage = "Caixas inválidas")]
         [DisplayFormat(DataFormatString = "{0:#}")]
-        [Display(Name = "Caixas")]
         public int Caixas { get; set; }
 
         /// <summary>

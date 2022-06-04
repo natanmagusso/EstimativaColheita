@@ -22,7 +22,6 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Código obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Código inválido")]
-        [Display(Name = "Código")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
@@ -30,7 +29,6 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Ano plantio obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Ano plantio inválido")]
-        [Display(Name = "Plantio")]
         public int AnoPlantio { get; set; }
 
         /// <summary>
@@ -38,7 +36,6 @@ namespace EstimativaColheita.Models
         /// </summary>
         [Required(ErrorMessage = "Qtde pés obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Qtde pés inválido")]
-        [Display(Name = "Pés")]
         public int QuantidadePes { get; set; }
 
         /// <summary>
@@ -82,7 +79,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do talhão.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Talhão")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + AnoPlantio.ToString();
     }
 

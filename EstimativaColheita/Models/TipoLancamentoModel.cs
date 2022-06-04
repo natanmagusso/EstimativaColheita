@@ -21,7 +21,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição do tipo de lançamento.
         /// </summary>
         [Required(ErrorMessage = "Descrição obrigatória")]
-        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         /// <summary>
@@ -33,7 +32,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do tipo de lançamento.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Tipo")]
         public string DescricaoCompleta => Descricao;
     }
 

@@ -22,14 +22,12 @@ namespace EstimativaColheita.Models
         /// </summary>        
         [Required(ErrorMessage = "Código obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Código inválido")]
-        [Display(Name = "Código")]
         public int CodigoInterno { get; set; }
 
         /// <summary>
         /// Campo nome do encarregado.
         /// </summary>
         [Required(ErrorMessage = "Nome obrigatório")]
-        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         /// <summary>
@@ -64,7 +62,6 @@ namespace EstimativaColheita.Models
         /// Campo descrição completa do encarregado.
         /// </summary>
         [NotMapped]
-        [Display(Name = "Turma")]
         public string DescricaoCompleta => CodigoInterno.ToString() + " | " + Nome;
     }
 

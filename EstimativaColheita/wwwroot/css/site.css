@@ -34,5 +34,9 @@ body {
 }
 
 .primary {
-    color: #0074d9 !important;
+    color: #007bff !important;
+}
+
+.secondary {
+    color: #6c757d !important
 }

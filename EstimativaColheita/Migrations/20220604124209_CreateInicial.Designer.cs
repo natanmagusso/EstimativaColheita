@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstimativaColheita.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220523121012_CreateInicial")]
+    [Migration("20220604124209_CreateInicial")]
     partial class CreateInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

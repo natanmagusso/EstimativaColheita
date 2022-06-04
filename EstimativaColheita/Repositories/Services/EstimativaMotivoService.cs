@@ -43,7 +43,7 @@ namespace EstimativaColheita.Repositories.Services
             return _appContext
                 .EstimativaMotivos
                 .AsNoTracking()
-                .Where(mot => mot.Ativo == true)
+                .Where(mot => mot.Ativo == true && mot.Id != 1)
                 .OrderBy(mot => mot.Descricao);
         }
 

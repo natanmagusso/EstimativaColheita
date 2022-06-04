@@ -41,6 +41,25 @@ namespace EstimativaColheita.Repositories.Services
         }
 
         /// <summary>
+        /// Método que retorna as estimtivas de colehita através do contrato informado.
+        /// </summary>
+        /// <param name="contrato">Id do contrato.</param>
+        public async Task<List<EstimativaColheitaModel>> ConsultarEstimativaColheitaContratoAsync(int contrato)
+        {
+            return await _appContext
+                .EstimativasColheita
+                .AsNoTracking()
+                .Include(est => est.Contrato)
+                .Include(est => est.Talhao)
+                .Include(est => est.Encarregado)
+                .Include(est => est.EstimativaMotivo)
+                .Include(est => est.TipoLancamento)
+                .Where(est => est.IdContrato == contrato)
+                .OrderBy(est => est.DataLancamento)
+                .ToListAsync();
+        }
+
+        /// <summary>
         /// Método que retorna as estimtivas de colehita através do contrato e talhão informado.
         /// </summary>
         /// <param name="contrato">Id do contrato.</param>

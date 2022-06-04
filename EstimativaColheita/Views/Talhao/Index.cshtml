@@ -32,20 +32,18 @@
                         <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
                         <td>@Html.DisplayFor(modelItem => item.Variedade.DescricaoCompleta)</td>
                         <td>
-                            <div class="btn-group">
-                                @if (item.Ativo == true)
-                                {
-                                    <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar talhão">&nbsp;<i class="fa fa-pencil" aria-hidden="true">&nbsp;</i></a>
-                                    <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Desabilitar talhão">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true">&nbsp;</i></a>
-                                    <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a>
-                                }
-                                else
-                                {
-                                    <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">&nbsp;<i class="fa fa-pencil" aria-hidden="true">&nbsp;</i></a>
-                                    <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true">&nbsp;</i></a>
-                                    <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Habilitar talhão">&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a>
-                                }
-                            </div>
+                            @if (item.Ativo == true)
+                            {
+                                <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar talhão">&nbsp;<i class="fa fa-pencil" aria-hidden="true">&nbsp;</i></a>
+                                <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Desabilitar talhão">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true">&nbsp;</i></a>
+                                <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">&nbsp;<i class="fa fa-pencil" aria-hidden="true">&nbsp;</i></a>
+                                <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true">&nbsp;</i></a>
+                                <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Habilitar talhão">&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a>
+                            }
                         </td>
                     </tr>
                 }

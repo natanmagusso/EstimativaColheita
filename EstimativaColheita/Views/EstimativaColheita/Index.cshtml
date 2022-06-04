@@ -13,7 +13,8 @@
         <div class="d-flex bd-highlight">
             <div class="p-0 flex-fill bd-highlight">
                 <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
-                <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Motivos da estimativa</a>
+                <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Motivos estimativa</a>
+                <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaColheita" asp-action="Index"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Todos registros</a>
             </div>
             <div class="p-0 flex-fill bd-highlight">
                 <select id="IdConFiltro" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
@@ -23,7 +24,7 @@
             &nbsp;&nbsp;&nbsp;
             <div class="p-0 d-flex flex-row-reverse bd-highlight">
                 <select id="IdTalFiltro" class="form-select form-select-sm">
-                    <option value="" selected>Todos os talhões</option>
+                    <option value="" disabled selected>Selecione o talhão...</option>
                 </select>
             </div>
         </div>

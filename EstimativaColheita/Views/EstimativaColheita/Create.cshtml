@@ -17,30 +17,30 @@
                 <span asp-validation-for="DataLancamento" class="text-danger"></span>
             </div>-->
             <div class="col-md-2">
-                <label asp-for="Caixas" class="control-label"></label>
+                <label class="control-label">Caixas</label>
                 <input asp-for="Caixas" class="form-control form-control-sm" type="number" />
                 <span asp-validation-for="Caixas" class="text-danger"></span>
             </div>
             <div class="col-md-5">
-                <label asp-for="Contrato.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdContrato" id="IdContratoEstimativaColheita" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                <label class="control-label">Contrato</label>
+                <select asp-for="IdContrato" id="IdConEstimado" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
                     <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-5">
-                <label asp-for="Talhao.DescricaoCompleta" class="control-label"></label>
-                <select asp-for="IdTalhao" id="IdTalhaoEstimativaColheita" class="form-select form-select-sm">
+                <label class="control-label">Talhão</label>
+                <select asp-for="IdTalhao" id="IdTalEstimado" class="form-select form-select-sm">
                     <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>   
             <div class="col-md-5">
-                <label asp-for="Encarregado.DescricaoCompleta" class="control-label"></label>
+                <label class="control-label">Turma</label>
                 <select asp-for="IdEncarregado" class="form-select form-select-sm" asp-items="ViewBag.IdEncarregado">
                     <option value="" disabled selected>Selecione...</option>
                 </select>
             </div>
             <div class="col-md-7">
-                <label asp-for="EstimativaMotivo.DescricaoCompleta" class="control-label"></label>
+                <label class="control-label">Motivo</label>
                 <select asp-for="IdEstimativaMotivo" class="form-select form-select-sm" asp-items="ViewBag.IdEstimativaMotivo">
                     <option value="" disabled selected>Selecione...</option>
                 </select>

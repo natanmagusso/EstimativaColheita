@@ -37,6 +37,8 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .OrderBy(est => est.DataLancamento)
+                .OrderBy(est => est.Contrato.CodigoInterno)
+                .OrderBy(est => est.Talhao.CodigoInterno)
                 .ToListAsync();
         }
 
@@ -56,6 +58,8 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.TipoLancamento)
                 .Where(est => est.IdContrato == contrato)
                 .OrderBy(est => est.DataLancamento)
+                .OrderBy(est => est.Contrato.CodigoInterno)
+                .OrderBy(est => est.Talhao.CodigoInterno)
                 .ToListAsync();
         }
 
@@ -76,6 +80,8 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.TipoLancamento)
                 .Where(est => est.IdContrato == contrato && est.IdTalhao == talhao)
                 .OrderBy(est => est.DataLancamento)
+                .OrderBy(est => est.Contrato.CodigoInterno)
+                .OrderBy(est => est.Talhao.CodigoInterno)
                 .ToListAsync();
         }
 

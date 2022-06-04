@@ -33,6 +33,7 @@ namespace EstimativaColheita.Repositories.Services
                 .AsNoTracking()
                 .Include(tal => tal.Contrato)
                 .Include(tal => tal.Variedade)
+                .OrderBy(tal => tal.Contrato.CodigoInterno)
                 .OrderBy(tal => tal.CodigoInterno)
                 .ToListAsync();
         }

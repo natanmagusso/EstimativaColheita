@@ -18,7 +18,7 @@
 
 function Index(valueContrato, valueTalhao) {
     if (valueTalhao !== "" && valueTalhao > "0") {
-        $.get("/EstimativaColheita/ListarEstimativas?contrato=" + valueContrato + "&talhao=" + valueTalhao, {}, function (data) {
+        $.get("/EstimativaColheita/ListarEstimativasContratoTalhao?contrato=" + valueContrato + "&talhao=" + valueTalhao, {}, function (data) {
             var estimativas = $("#estimativas");
             estimativas.html("");
             estimativas.html(data);

@@ -1,0 +1,77 @@
+﻿@model List<EstimativaColheitaModel>
+
+<div class="card-body">
+    <table class="table table-sm table-hover table caption-top">
+        <thead>
+            <tr>
+                <th>@Html.DisplayName("Lançamento")</th>
+                <th>@Html.DisplayName("Contrato")</th>
+                <th>@Html.DisplayName("Talhão")</th>
+                <th>@Html.DisplayName("Caixas")</th>
+                <th>@Html.DisplayName("Motivo")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                    @if (item.Caixas < 0)
+                    {
+                        <td class="red">@Html.DisplayFor(modelItem => item.Caixas)</td>
+                    }
+                    else
+                    {
+                        <td class="green">@Html.DisplayFor(modelItem => item.Caixas)</td>
+                    }
+                    <td>@Html.DisplayFor(modelItem => item.EstimativaMotivo.DescricaoCompleta)</td>
+                    <td>
+                        <!--<a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Mais informações">&nbsp;<i class="fa fa-info" aria-hidden="true"></i>&nbsp;</a>-->
+                        <i class="primary fa fa-info"
+                           aria-hidden="true"
+                           asp-route-id="@item.Id"
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="top"
+                           data-html="true"
+                           title="Lançamento: @item.DataLancamento.ToString("dd/MM/yyyy")&#013;Caixas: @item.Caixas&#013;Turma: @item.Encarregado.DescricaoCompleta&#013;Contrato: @item.Contrato.DescricaoCompleta&#013;Talhão: @item.Talhao.CodigoInterno&#013;Motivo: @item.EstimativaMotivo.Descricao&#013;Tipo: @item.TipoLancamento.Descricao">
+                        </i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="card-footer">
+    <div>
+        @{
+            var totalEstimado = 0; var totalColhido = 0; var saldoColher = 0;
+        }
+
+        @foreach (var item in Model.Where(g => g.IdTipoLancamento == 1).GroupBy(g => g.IdTipoLancamento))
+        {
+            foreach (var estimado in item.ToList())
+                totalEstimado += estimado.Caixas;
+
+            saldoColher = totalEstimado;
+        }
+
+        @foreach (var item in Model.Where(g => g.IdTipoLancamento == 2).GroupBy(g => g.IdTipoLancamento))
+        {
+            foreach (var colhido in item.ToList())
+            {
+                totalColhido += colhido.Caixas;
+                saldoColher -= colhido.Caixas;
+            }
+        }
+        <h6>
+            <span class="black">Estimado: @totalEstimado</span>
+            <span>&nbsp;|&nbsp;</span>
+            <span class="green">Colhido: @totalColhido</span>
+            <span>&nbsp;|&nbsp;</span>
+            <span class="blue">Saldo a colher: @saldoColher</span>
+        </h6>
+    </div>
+</div>

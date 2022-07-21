@@ -10,15 +10,16 @@
     </div>
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
-        <table class="table table-sm table-hover table caption-top">
-            <caption />
+    </div>
+    <div class="tableFixHead">
+        <table>
             <thead>
                 <tr>
-                    <th>@Html.DisplayName("Código")</th>
+                    <th>@Html.DisplayName("Contrato")</th>
+                    <th>@Html.DisplayName("Talhão")</th>
+                    <th>@Html.DisplayName("Variedade")</th>
                     <th>@Html.DisplayName("Plantio")</th>
                     <th>@Html.DisplayName("Pés")</th>
-                    <th>@Html.DisplayName("Contrato")</th>
-                    <th>@Html.DisplayName("Variedade")</th>
                     <th>@Html.DisplayName("Ações")</th>
                 </tr>
             </thead>
@@ -26,11 +27,11 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
                         <td>@Html.DisplayFor(modelItem => item.CodigoInterno)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Variedade.DescricaoCompleta)</td>
                         <td>@Html.DisplayFor(modelItem => item.AnoPlantio)</td>
                         <td>@Html.DisplayFor(modelItem => item.QuantidadePes)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Variedade.DescricaoCompleta)</td>
                         <td>
                             @if (item.Ativo == true)
                             {
@@ -50,4 +51,5 @@
             </tbody>
         </table>
     </div>
+    <div class="card-footer" />
 </div>

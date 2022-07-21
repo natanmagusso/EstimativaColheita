@@ -10,28 +10,30 @@
     </div>
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
-        <table class="table table-sm table-hover table caption-top">
-            <caption />
+    </div>
+    <div class="tableFixHead">
+        <table>
             <thead>
                 <tr>
-                    <th>@Html.DisplayName("Lançamento")</th>
-                    <th>@Html.DisplayName("Caixas")</th>
                     <th>@Html.DisplayName("Contrato")</th>
                     <th>@Html.DisplayName("Talhão")</th>
+                    <th>@Html.DisplayName("Lançamento")</th>
+                    <th>@Html.DisplayName("Caixas")</th>
                     <th>@Html.DisplayName("Turma")</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model) {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Caixas)</td>
                         <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
                         <td>@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Caixas)</td>
                         <td>@Html.DisplayFor(modelItem => item.Encarregado.DescricaoCompleta)</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+    <div class="card-footer" />
 </div>

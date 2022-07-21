@@ -1,12 +1,12 @@
 ﻿@model List<EstimativaColheitaModel>
 
-<div class="card-body">
-    <table class="table table-sm table-hover table caption-top">
+<div class="tableFixHead">
+    <table>
         <thead>
             <tr>
-                <th>@Html.DisplayName("Lançamento")</th>
                 <th>@Html.DisplayName("Contrato")</th>
                 <th>@Html.DisplayName("Talhão")</th>
+                <th>@Html.DisplayName("Lançamento")</th>
                 <th>@Html.DisplayName("Caixas")</th>
                 <th>@Html.DisplayName("Motivo")</th>
                 <th></th>
@@ -16,9 +16,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
                     <td>@Html.DisplayFor(modelItem => item.Contrato.DescricaoCompleta)</td>
                     <td>@Html.DisplayFor(modelItem => item.Talhao.CodigoInterno)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataLancamento)</td>
                     @if (item.Caixas < 0)
                     {
                         <td class="red">@Html.DisplayFor(modelItem => item.Caixas)</td>

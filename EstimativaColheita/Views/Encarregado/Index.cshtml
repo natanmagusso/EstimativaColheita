@@ -10,11 +10,12 @@
     </div>
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
-        <table class="table table-sm table-hover table caption-top">
-            <caption />
+    </div>
+    <div class="tableFixHead">
+        <table>
             <thead>
                 <tr>
-                    <th>@Html.DisplayName("Código")</th>
+                    <th>@Html.DisplayName("Turma")</th>
                     <th>@Html.DisplayName("Nome")</th>
                     <th>@Html.DisplayName("Coordenador")</th>
                     <th>@Html.DisplayName("Ações")</th>
@@ -45,4 +46,5 @@
             </tbody>
         </table>
     </div>
+    <div class="card-footer" />
 </div>

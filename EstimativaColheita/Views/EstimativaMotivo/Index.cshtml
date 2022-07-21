@@ -11,8 +11,9 @@
     <div class="card-body">
         <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
         <a class="btn btn-outline-secondary btn-sm" asp-area="" asp-controller="EstimativaColheita" asp-action="Index"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Voltar para a estimativa</a>
-        <table class="table table-sm table-hover table caption-top">
-            <caption />
+    </div>
+    <div class="tableFixHead">
+        <table>
             <thead>
                 <tr>
                     <th>@Html.DisplayName("Descrição")</th>
@@ -45,4 +46,5 @@
             </tbody>
         </table>
     </div>
+    <div class="card-footer" />
 </div>

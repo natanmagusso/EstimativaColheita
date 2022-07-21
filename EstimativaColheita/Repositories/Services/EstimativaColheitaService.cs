@@ -36,9 +36,10 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.Encarregado)
                 .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
-                .OrderBy(est => est.DataLancamento)
                 .OrderBy(est => est.Contrato.CodigoInterno)
-                .OrderBy(est => est.Talhao.CodigoInterno)
+                .OrderBy(est => est.Contrato.CodigoInterno)
+                .ThenBy(est => est.Talhao.CodigoInterno)
+                .ThenBy(est => est.DataLancamento)
                 .ToListAsync();
         }
 
@@ -57,9 +58,9 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .Where(est => est.IdContrato == contrato)
-                .OrderBy(est => est.DataLancamento)
                 .OrderBy(est => est.Contrato.CodigoInterno)
-                .OrderBy(est => est.Talhao.CodigoInterno)
+                .ThenBy(est => est.Talhao.CodigoInterno)
+                .ThenBy(est => est.DataLancamento)
                 .ToListAsync();
         }
 
@@ -79,9 +80,9 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(est => est.EstimativaMotivo)
                 .Include(est => est.TipoLancamento)
                 .Where(est => est.IdContrato == contrato && est.IdTalhao == talhao)
-                .OrderBy(est => est.DataLancamento)
                 .OrderBy(est => est.Contrato.CodigoInterno)
-                .OrderBy(est => est.Talhao.CodigoInterno)
+                .ThenBy(est => est.Talhao.CodigoInterno)
+                .ThenBy(est => est.DataLancamento)
                 .ToListAsync();
         }
 

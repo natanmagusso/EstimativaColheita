@@ -34,7 +34,9 @@ namespace EstimativaColheita.Repositories.Services
                 .Include(col => col.Contrato)
                 .Include(col => col.Talhao)
                 .Include(col => col.Encarregado)
-                .OrderBy(col => col.DataLancamento)
+                .OrderBy(col => col.Contrato.CodigoInterno)
+                .ThenBy(col => col.Talhao.CodigoInterno)
+                .ThenBy(col => col.DataLancamento)
                 .ToListAsync();
         }
 

@@ -25,6 +25,10 @@ namespace EstimativaColheita.Controllers
         {
             return View(await _colheitaRealizada.ConsultarTodasColheitasRealizadasAsync());
         }
+        public async Task<IActionResult> Teste() 
+        {
+            return View(await _colheitaRealizada.ConsultarTodasColheitasRealizadasAsync());
+        }
         public IActionResult Create()
         {
             ViewData["IdContrato"] = new SelectList(_contrato.ConsultarContratosAtivosAsync(), "Id", "DescricaoCompleta");

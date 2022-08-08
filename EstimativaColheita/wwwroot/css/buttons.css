@@ -1,0 +1,115 @@
+﻿/*Botão laranja*/
+.btn-orange {
+    color: #FFFFFF !important;
+    /*background-color: #F58221;*/
+    background-color: #FF7B00 !important;
+    border-radius: 0px;
+    border-color: #FF7B00 !important;
+}
+
+    .btn-orange:hover {
+        color: #FF7B00 !important;
+        background-color: transparent !important;
+        border-radius: 0px;
+        border-color: #FF7B00 !important;
+    }
+
+/*Botão azul*/
+.btn-blue {
+    color: #FFFFFF !important;
+    background-color: #273191 !important;
+    border-radius: 0px;
+    border-color: #273191 !important;
+}
+
+    .btn-blue:hover {
+        color: #273191 !important;
+        background-color: transparent !important;
+        border-radius: 0px;
+        border-color: #273191 !important;
+    }
+
+/*Botão vermelho*/
+.btn-red {
+    color: #FFFFFF !important;
+    background-color: #E93006 !important;
+    border-radius: 0px;
+    border-color: #E93006 !important;
+}
+
+    .btn-red:hover {
+        color: #E93006 !important;
+        background-color: transparent !important;
+        border-radius: 0px;
+        border-color: #E93006 !important;
+    }
+
+/*Botão verde*/
+.btn-green {
+    color: #FFFFFF !important;
+    background-color: #4E9D2D !important;
+    border-radius: 0px;
+    border-color: #4E9D2D !important;
+}
+
+    .btn-green:hover {
+        color: #4E9D2D !important;
+        background-color: transparent !important;
+        border-radius: 0px;
+        border-color: #4E9D2D !important;
+    }
+
+/*Botão outline laranja*/
+.btn-outline-orange {
+    color: #FE9600 !important;
+    background-color: transparent !important;
+    border-color: #FE9600 !important;
+    border-radius: 3px;
+}
+
+    .btn-outline-orange:hover,
+    .btn-outline-orange:active,
+    .btn-outline-orange:focus,
+    .btn-outline-orange.active {
+        color: #FFFFFF !important;
+        background-color: #FF7B00 !important;
+        border-color: #FF7B00 !important;
+        border-radius: 3px;
+    }
+
+/*Botão laranja*/
+.btn-outline-blue {
+    color: #273191 !important;
+    background-color: transparent !important;
+    border-color: #273191 !important;
+    border-radius: 3px;
+}
+
+    .btn-outline-blue:hover,
+    .btn-outline-blue:active,
+    .btn-outline-blue:focus,
+    .btn-outline-blue.active {
+        color: #FFFFFF !important;
+        background-color: #131D91 !important;
+        border-color: #131D91 !important;
+        border-radius: 3px;
+    }
+
+/*Botão outline transparente*/
+.btn-outline-transparent {
+    color: #000000 !important;
+    background-color: transparent !important;
+    border-radius: 0px;
+    border-color: #D8D8D8 !important;
+}
+
+    .btn-outline-transparent:hover,
+    .btn-outline-transparent:active,
+    .btn-outline-transparent:focus,
+    .btn-outline-transparent.active {
+        color: #FF7B00 !important;
+        /*color: #FC5115 !important;*/
+        background-color: transparent !important;
+        border-radius: 0px;
+        border-color: #FF7B00 !important;
+    }

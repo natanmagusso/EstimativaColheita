@@ -1,0 +1,60 @@
+﻿/*Cores bases do sistema*/
+.black {
+    color: #000000 !important;
+}
+
+.white {
+    color: #FFFFFF !important;
+}
+
+.gray {
+    color: #353535 !important;
+}
+
+.dark {
+    color: #202529 !important;
+}
+
+.red {
+    color: #E93006 !important;
+}
+
+.green {
+    color: #4E9D2D !important;
+}
+
+.blue {
+    color: #273191 !important;
+}
+
+.blue_royal {
+    color: royalblue !important;
+}
+
+.orange {
+    color: #FF7B00 !important;
+}
+
+.primary {
+    color: #0070FC !important;
+}
+
+.secondary {
+    color: #69757D !important;
+}
+
+.focused {
+    color: #E8ECEF !important;
+}
+
+.border-from {
+    color: #D8D8D8 !important;
+}
+
+.background-form {
+    color: #F7F7F7 !important;
+}
+
+.button-orange {
+    color: #FE9600 !important;
+}

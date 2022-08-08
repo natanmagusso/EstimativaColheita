@@ -1,0 +1,25 @@
+﻿.page-link {
+    position: relative;
+    display: block;
+    color: #000000 !important;
+    background-color: transparent !important;
+}
+
+    .page-link:hover {
+        z-index: 2;
+        color: #FF7B00 !important;
+        background-color: transparent !important;
+    }
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #FFFFFF !important;
+    background-color: #FF7B00 !important;
+    border-color: #FF7B00 !important;
+}
+
+.page-item.disabled .page-link {
+    z-index: 4;
+    color: #69757D !important;
+    background-color: transparent !important;
+}

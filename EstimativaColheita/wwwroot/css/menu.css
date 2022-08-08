@@ -1,0 +1,16 @@
+﻿.nav-item > a:hover {
+    color: #0031C8 !important;
+}
+
+a.hover_bottom_menu:hover {
+    color: #0031C8 !important;
+}
+
+a.hover_bottom_home:hover {
+    color: #FF7B00 !important;
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}

@@ -1,0 +1,8 @@
+﻿.center {
+    text-align: center; /* centraliza o texto */
+    padding: 2em; /* 'desgrudado' das bordas do div-pai */
+}
+
+    .center > div { /* centraliza os elementos 'div' dentro do 'div.center' */
+        margin: auto;
+    }

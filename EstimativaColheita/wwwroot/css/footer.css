@@ -1,0 +1,17 @@
+﻿.footer {
+    /*background-color: #CDCDCD;*/
+    background-color: #D8D8D8 !important;
+    text-align: left;
+    /*border-top: 1px solid #69757D;*/
+}
+
+    .footer .container p {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .footer .container span {
+        float: right;
+    }

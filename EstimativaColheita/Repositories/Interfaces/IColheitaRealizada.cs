@@ -1,4 +1,5 @@
 ﻿using EstimativaColheita.Models;
+using X.PagedList;
 
 namespace EstimativaColheita.Repositories.Interfaces
 {
@@ -10,7 +11,7 @@ namespace EstimativaColheita.Repositories.Interfaces
         /// <summary>
         /// Método buscar todos os registros.
         /// </summary>
-        Task<List<ColheitaRealizadaModel>> ConsultarTodasColheitasRealizadasAsync();
+        PagedList<ColheitaRealizadaModel> ConsultarTodasColheitasRealizadasAsync(int? pagina);
 
         /// <summary>
         /// Método inserir.

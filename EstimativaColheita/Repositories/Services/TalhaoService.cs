@@ -2,6 +2,7 @@
 using EstimativaColheita.Models;
 using EstimativaColheita.Persistence;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace EstimativaColheita.Repositories.Services
 {
@@ -26,16 +27,19 @@ namespace EstimativaColheita.Repositories.Services
         /// <summary>
         /// Método buscar todos os registros.
         /// </summary>
-        public async Task<List<TalhaoModel>> ConsultarTodosTalhoesAsync()
+        public PagedList<TalhaoModel> ConsultarTodosTalhoesAsync(int? pagina)
         {
-            return await _appContext
+            int tamanhoPagina = 5;
+            int numeroPagina = pagina ?? 1;
+
+            return (PagedList<TalhaoModel>)_appContext
                 .Talhoes
                 .AsNoTracking()
                 .Include(tal => tal.Contrato)
                 .Include(tal => tal.Variedade)
                 .OrderBy(tal => tal.Contrato.CodigoInterno)
                 .OrderBy(tal => tal.CodigoInterno)
-                .ToListAsync();
+                .ToPagedList(numeroPagina, tamanhoPagina);
         }
 
         /// <summary>

@@ -18,9 +18,9 @@ namespace EstimativaColheita.Controllers
             _variedade = variedade;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pagina)
         {            
-            return View(await _talhao.ConsultarTodosTalhoesAsync());
+            return View(_talhao.ConsultarTodosTalhoesAsync(pagina));
         }
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {

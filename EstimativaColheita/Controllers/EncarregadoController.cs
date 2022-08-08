@@ -15,9 +15,9 @@ namespace EstimativaColheita.Controllers
             _encarregado = encarregado;
             _fiscalCampo = fiscalCampo;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pagina)
         {
-            return View(await _encarregado.ConsultarTodosEncarregadosAsync());
+            return View(_encarregado.ConsultarTodosEncarregadosAsync(pagina));
         }
         public async Task<IActionResult> CreateOrEdit(int id)
         {

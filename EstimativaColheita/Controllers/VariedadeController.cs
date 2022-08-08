@@ -13,9 +13,9 @@ namespace EstimativaColheita.Controllers
             _variedade = variedade;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pagina)
         {
-              return View(await _variedade.ConsultarTodasVariedadesAsync());
+              return View(_variedade.ConsultarTodasVariedadesAsync(pagina));
         }
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {

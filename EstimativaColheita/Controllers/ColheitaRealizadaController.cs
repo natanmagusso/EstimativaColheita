@@ -21,13 +21,9 @@ namespace EstimativaColheita.Controllers
             _encarregado = encarregado;
             _estimativaColheita = estimativaColheita;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pagina)
         {
-            return View(await _colheitaRealizada.ConsultarTodasColheitasRealizadasAsync());
-        }
-        public async Task<IActionResult> Teste() 
-        {
-            return View(await _colheitaRealizada.ConsultarTodasColheitasRealizadasAsync());
+            return View(_colheitaRealizada.ConsultarTodasColheitasRealizadasAsync(pagina));
         }
         public IActionResult Create()
         {

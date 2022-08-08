@@ -13,9 +13,9 @@ namespace EstimativaColheita.Controllers
             _contrato = contrato;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pagina)
         {
-            return View(await _contrato.ConsultarTodosContratosAsync());
+            return View(_contrato.ConsultarTodosContratosAsync(pagina));
         }
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {

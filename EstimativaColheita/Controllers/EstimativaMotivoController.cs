@@ -13,9 +13,9 @@ namespace EstimativaColheita.Controllers
             _estimativaMotivo = estimativaMotivo;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pagina)
         {
-            return View(await _estimativaMotivo.ConsultarTodosMotivosEstimativaAsync());
+            return View(_estimativaMotivo.ConsultarTodosMotivosEstimativaAsync(pagina));
         }
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {

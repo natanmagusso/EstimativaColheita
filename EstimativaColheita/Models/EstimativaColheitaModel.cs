@@ -27,7 +27,7 @@ namespace EstimativaColheita.Models
         /// Campo quantidade da fruta.
         /// </summary>
         [Required(ErrorMessage = "Caixas obrigatórias")]
-        [DisplayFormat(DataFormatString = "{0:#}")]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
         public int Caixas { get; set; }
 
         /// <summary>

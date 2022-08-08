@@ -4,12 +4,12 @@
     ViewData["Title"] = "Estimativas";
 }
 
-<div class="card border-secondary mb-3">
-    <div class="card-header">
-        <h6 card-title>Adicionar registro</h6>
+<div class="card">
+    <div class="header-card">
+        &nbsp;&nbsp;Adicionar registro
     </div>
-    <div class="card-body">
-        <form class="row g-3" asp-action="Create">
+    <div class="body-card-create">
+        <form id="frmEstimativa" class="row g-3 needs-validation" novalidate asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <!--<div class="form-group">
                 <label asp-for="DataLancamento" class="control-label"></label>
@@ -17,42 +17,47 @@
                 <span asp-validation-for="DataLancamento" class="text-danger"></span>
             </div>-->
             <div class="col-md-2">
-                <label class="control-label">Caixas</label>
-                <input asp-for="Caixas" class="form-control form-control-sm" type="number" />
-                <span asp-validation-for="Caixas" class="text-danger"></span>
+                <label class="form-label">Caixas</label>
+                <input asp-for="Caixas" type="number" class="form-control form-control-sm" required />
+                <div class="invalid-feedback">informe as caixas.</div>
             </div>
             <div class="col-md-5">
-                <label class="control-label">Contrato</label>
-                <select asp-for="IdContrato" id="IdConEstimado" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                <label class="form-label">Contrato</label>
+                <select asp-for="IdContrato" id="IdConEstimado" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" required>
                     <option value="" disabled selected>Selecione...</option>
                 </select>
+                <div class="invalid-feedback">Informe o contrato.</div>
             </div>
             <div class="col-md-5">
-                <label class="control-label">Talhão</label>
-                <select asp-for="IdTalhao" id="IdTalEstimado" class="form-select form-select-sm">
+                <label class="form-label">Talhão</label>
+                <select asp-for="IdTalhao" id="IdTalEstimado" class="form-select form-select-sm" required>
                     <option value="" disabled selected>Selecione...</option>
                 </select>
+                <div class="invalid-feedback">Informe o talhão.</div>
             </div>   
             <div class="col-md-5">
-                <label class="control-label">Turma</label>
-                <select asp-for="IdEncarregado" class="form-select form-select-sm" asp-items="ViewBag.IdEncarregado">
+                <label class="form-label">Turma</label>
+                <select asp-for="IdEncarregado" class="form-select form-select-sm" asp-items="ViewBag.IdEncarregado" required>
                     <option value="" disabled selected>Selecione...</option>
                 </select>
+                <div class="invalid-feedback">Informe a turma.</div>
             </div>
             <div class="col-md-7">
-                <label class="control-label">Motivo</label>
-                <select asp-for="IdEstimativaMotivo" class="form-select form-select-sm" asp-items="ViewBag.IdEstimativaMotivo">
+                <label class="form-label">Motivo</label>
+                <select asp-for="IdEstimativaMotivo" class="form-select form-select-sm" asp-items="ViewBag.IdEstimativaMotivo" required>
                     <option value="" disabled selected>Selecione...</option>
                 </select>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Salvar</button>
-                <a class="btn btn-outline-secondary btn-sm" asp-action="Index"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar</a>
-                <!--<input class="btn btn-outline-success btn-sm" type="submit" value="Salvar" />-->
-                <!--Agrupar botões-->
-                <!--<div class="btn-group"></div>-->
+                <div class="invalid-feedback">Informe o motivo.</div>
             </div>
         </form>
+    </div>
+    <div class="footer-card-bottons-details">
+        <div class="col-md-12">
+            <button form="frmEstimativa" type="submit" class="btn btn-orange btn-sm"><i class="fa-solid fa-square-check"></i>&nbsp;Salvar</button>
+            <a class="btn btn-outline-transparent btn-sm" asp-action="Index"><i class="fa-solid fa-ban"></i>&nbsp;Cancelar</a>
+            <!--Agrupar botões-->
+            <!--<div class="btn-group"></div>-->
+        </div>
     </div>
 </div>
 

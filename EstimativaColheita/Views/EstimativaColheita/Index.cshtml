@@ -5,16 +5,16 @@
     ViewData["Title"] = "Estimativas";
 }
 
-<div class="card border-secondary mb-3">
-    <div class="card-header">
-        <h6 card-title>Lista de estimativa de colheita</h6>
+<div class="card">
+    <div class="header-card">
+        &nbsp;&nbsp;Lista de estimativa de colheita
     </div>
-    <div class="card-body">
+    <div class="body-card">
         <div class="d-flex bd-highlight">
             <div class="p-0 flex-fill bd-highlight">
-                <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
-                <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Motivos estimativa</a>
-                <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="EstimativaColheita" asp-action="Index"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Todos registros</a>
+                <a class="btn btn-orange btn-sm" asp-action="Create"><i class="fa-solid fa-plus"></i>&nbsp;Novo registro</a>
+                <a class="btn btn-orange btn-sm" asp-area="" asp-controller="EstimativaMotivo" asp-action="Index"><i class="fa-solid fa-list"></i>&nbsp;Motivos estimativa</a>
+                <a class="btn btn-orange btn-sm" asp-area="" asp-controller="EstimativaColheita" asp-action="Index"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Todos registros</a>
             </div>
             <div class="p-0 flex-fill bd-highlight">
                 <select id="IdConFiltro" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">

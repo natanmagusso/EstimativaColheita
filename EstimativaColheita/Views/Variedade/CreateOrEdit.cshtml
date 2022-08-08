@@ -4,44 +4,40 @@
     ViewData["Title"] = "Variedades";
 }
 
-<div class="card border-secondary mb-3">
-    <div class="card-header">
-        @if (Model.Id == 0)
-        {
-            <text><h6 card-title>Adicionar registro</h6></text>
-        }
-        else
-        {
-            <text><h6 card-title>Editar registro</h6></text>
-        }
+<div class="card">
+    <div class="header-card">
+        @if (Model.Id == 0) { <text>&nbsp;&nbsp;Adicionar registro</text> } 
+        else { <text>&nbsp;&nbsp;Editar registro</text> }
     </div>
-    <div class="card-body">
-        <form class="row g-3" asp-action="CreateOrEdit">
+    <div class="body-card-create">
+        <form id="frmVariedade" class="row g-3 needs-validation" novalidate asp-action="CreateOrEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id"/>
             
             <div class="col-md-2">
-                <label class="control-label">Código</label>
+                <label class="form-label">Código</label>
                 @if (Model.Id == 0)
                 {
-                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' />
+                    <input asp-for="CodigoInterno" type="number" min='1' class="form-control form-control-sm" required />
+                    <div class="invalid-feedback">Código inválido.</div>
                 }
                 else
                 {
-                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' readonly />
-                }               
-                <span asp-validation-for="CodigoInterno" class="text-danger"></span>
+                    <input asp-for="CodigoInterno" type="number" class="form-control form-control-sm" readonly />
+                }
             </div>
             <div class="col-md-10">
-                <label class="control-label">Descrição</label>
-                <input asp-for="Descricao" class="form-control form-control-sm" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Salvar</button>
-                <a class="btn btn-outline-secondary btn-sm" asp-action="Index"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar</a>
+                <label class="form-label">Descrição</label>
+                <input asp-for="Descricao" type="text" class="form-control form-control-sm" required />
+                <div class="invalid-feedback">Informe a descrição.</div>
             </div>
         </form>
+    </div>
+    <div class="footer-card-bottons-details">
+        <div class="col-md-12">
+            <button form="frmVariedade" type="submit" class="btn btn-orange btn-sm"><i class="fa-solid fa-square-check"></i>&nbsp;Salvar</button>
+            <a class="btn btn-outline-transparent btn-sm" asp-action="Index"><i class="fa-solid fa-ban"></i>&nbsp;Cancelar</a>
+        </div>
     </div>
 </div>
 

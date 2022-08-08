@@ -1,15 +1,18 @@
-﻿@model IEnumerable<EstimativaColheita.Models.EncarregadoModel>
+﻿@model X.PagedList.IPagedList<EstimativaColheita.Models.EncarregadoModel>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
 
 @{
     ViewData["Title"] = "Encarregados";
 }
 
-<div class="card border-secondary mb-3">
-    <div class="card-header">
-        <h6 card-title>Lista de encarregados</h6>
+<div class="card">
+    <div class="header-card">
+        &nbsp;&nbsp;Lista de encarregados
     </div>
-    <div class="card-body">
-        <a class="btn btn-outline-success btn-sm" asp-action="CreateOrEdit"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
+    <div class="body-card">
+        <a class="btn btn-orange btn-sm" asp-action="CreateOrEdit"><i class="fa-solid fa-plus"></i>&nbsp;Novo registro</a>
     </div>
     <div class="tableFixHead">
         <table>
@@ -30,15 +33,15 @@
                         <td>
                             @if (item.Ativo == true)
                             {
-                                <a class="btn btn-outline-primary btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar encarregado">&nbsp;<i class="fa fa-pencil" aria-hidden="true">&nbsp;</i></a>
-                                <a class="btn btn-outline-danger btn-sm" asp-action="Disable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Desabilitar encarregado">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true">&nbsp;</i></a>
-                                <a class="btn btn-outline-dark btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id">&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a>
+                                <a class="btn btn-blue btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar encarregado @item.CodigoInterno"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-red btn-sm" asp-action="Disable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Desabilitar encarregado @item.CodigoInterno"><i class="fa-solid fa-thumbs-down"></i></a>
+                                <a class="btn btn-green btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id"><i class="fa-solid fa-thumbs-up"></i></a>
                             }
                             else
                             {
-                                <a class="btn btn-outline-primary btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id">&nbsp;<i class="fa fa-pencil" aria-hidden="true">&nbsp;</i></a>
-                                <a class="btn btn-outline-danger btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true">&nbsp;</i></a>
-                                <a class="btn btn-outline-dark btn-sm" asp-action="Enable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Habilitar encarregado">&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a>
+                                <a class="btn btn-blue btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-red btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id"><i class="fa-solid fa-thumbs-down"></i></a>
+                                <a class="btn btn-green btn-sm" asp-action="Enable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Habilitar encarregado @item.CodigoInterno"><i class="fa-solid fa-thumbs-up"></i></a>
                             }
                         </td>
                     </tr>
@@ -46,5 +49,50 @@
             </tbody>
         </table>
     </div>
-    <div class="card-footer" />
+    <div class="footer-card-pagination">
+        <div class="d-flex bd-highlight">
+            <div class="p-0 flex-grow-1 bd-highlight">
+                <ul class="pagination pagination-sm justify-content-start secondary" style="font-size:14px">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }), 
+                    new PagedListRenderOptions {
+                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                        DisplayLinkToPreviousPage = PagedListDisplayMode.Never,                        
+                        DisplayLinkToNextPage = PagedListDisplayMode.Never,
+				        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+			            DisplayLinkToIndividualPages = false,			    
+                        DisplayItemSliceAndTotal = true,
+                        ItemSliceAndTotalFormat = "Mostrando de {0} a {1} linha(s) de {2} registro(s) cadastrado(s)",
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" },
+                    })
+                </ul>
+            </div>            
+            <div class="p-0 bd-highlight">
+                <ul class="pagination pagination-sm justify-content-end">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }), 
+                    new PagedListRenderOptions {
+                        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+				        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+				        MaximumPageNumbersToDisplay = 10,
+                        DisplayLinkToIndividualPages = true,
+			            DisplayPageCountAndCurrentLocation = false,
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" },
+                        LinkToFirstPageFormat = "««",
+                        LinkToPreviousPageFormat = "«",
+			            LinkToIndividualPageFormat = "{0}",
+			            LinkToNextPageFormat = "»",
+			            LinkToLastPageFormat = "»»",
+                        /*LinkToFirstPageFormat = "Primeiro",
+                        LinkToPreviousPageFormat = "Anterior",
+			            LinkToIndividualPageFormat = "{0}",
+			            LinkToNextPageFormat = "Próximo",
+			            LinkToLastPageFormat = "Último",*/
+                    })                    
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,15 +1,18 @@
-﻿@model IEnumerable<EstimativaColheita.Models.ColheitaRealizadaModel>
+﻿@model X.PagedList.IPagedList<EstimativaColheita.Models.ColheitaRealizadaModel>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
 
 @{
     ViewData["Title"] = "Apontamentos";
 }
 
-<div class="card border-secondary mb-3">
-    <div class="card-header">
-        <h6 card-title>Lista de apontamentos de campo</h6>
+<div class="card">
+    <div class="header-card">
+        &nbsp;&nbsp;Lista de apontamentos de campo
     </div>
-    <div class="card-body">
-        <a class="btn btn-outline-success btn-sm" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Novo registro</a>
+    <div class="body-card">
+        <a class="btn btn-orange btn-sm" asp-action="Create"><i class="fa-solid fa-plus"></i>&nbsp;Novo registro</a>
     </div>
     <div class="tableFixHead">
         <table>
@@ -35,5 +38,50 @@
             </tbody>
         </table>
     </div>
-    <div class="card-footer" />
+    <div class="footer-card-pagination">
+        <div class="d-flex bd-highlight">
+            <div class="p-0 flex-grow-1 bd-highlight">
+                <ul class="pagination pagination-sm justify-content-start secondary" style="font-size:14px">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }), 
+                    new PagedListRenderOptions {
+                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                        DisplayLinkToPreviousPage = PagedListDisplayMode.Never,                        
+                        DisplayLinkToNextPage = PagedListDisplayMode.Never,
+				        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+			            DisplayLinkToIndividualPages = false,			    
+                        DisplayItemSliceAndTotal = true,
+                        ItemSliceAndTotalFormat = "Mostrando de {0} a {1} linha(s) de {2} registro(s) cadastrado(s)",
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" },
+                    })
+                </ul>
+            </div>            
+            <div class="p-0 bd-highlight">
+                <ul class="pagination pagination-sm justify-content-end">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }), 
+                    new PagedListRenderOptions {
+                        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+				        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+				        MaximumPageNumbersToDisplay = 10,
+                        DisplayLinkToIndividualPages = true,
+			            DisplayPageCountAndCurrentLocation = false,
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" },
+                        LinkToFirstPageFormat = "««",
+                        LinkToPreviousPageFormat = "«",
+			            LinkToIndividualPageFormat = "{0}",
+			            LinkToNextPageFormat = "»",
+			            LinkToLastPageFormat = "»»",
+                        /*LinkToFirstPageFormat = "Primeiro",
+                        LinkToPreviousPageFormat = "Anterior",
+			            LinkToIndividualPageFormat = "{0}",
+			            LinkToNextPageFormat = "Próximo",
+			            LinkToLastPageFormat = "Último",*/
+                    })                    
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

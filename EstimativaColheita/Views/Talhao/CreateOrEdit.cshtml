@@ -4,62 +4,66 @@
     ViewData["Title"] = "Talhões";
 }
 
-<div class="card border-secondary mb-3">
-    <div class="card-header">
-        @if (Model.Id == 0) { <text><h6 card-title>Adicionar registro</h6></text> } 
-        else { <text><h6 card-title>Editar registro</h6></text> }
+<div class="card">
+    <div class="header-card">
+        @if (Model.Id == 0) { <text>&nbsp;&nbsp;Adicionar registro</text> } 
+        else { <text>&nbsp;&nbsp;Editar registro</text> }
     </div>
-    <div class="card-body">
-        <form class="row g-3" asp-action="CreateOrEdit">
+    <div class="body-card-create">
+        <form id="frmTalhao" class="row g-3 needs-validation" novalidate asp-action="CreateOrEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id"/>
 
             <div class="col-md-2">
-                <label class="control-label">Código</label>
+                <label class="form-label">Código</label>
                 @if (Model.Id == 0)
                 {
-                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' />
+                    <input asp-for="CodigoInterno" type="number" min='1' class="form-control form-control-sm" required />
+                    <div class="invalid-feedback">Código inválido.</div>
                 }
                 else
                 {
-                    <input asp-for="CodigoInterno" class="form-control form-control-sm" type="number" min='0' readonly />
+                    <input asp-for="CodigoInterno" type="number" class="form-control form-control-sm" readonly />
                 }
-                <span asp-validation-for="CodigoInterno" class="text-danger"></span>
             </div>
             <div class="col-md-5">
-                <label class="control-label">Plantio</label>
-                <input asp-for="AnoPlantio" class="form-control form-control-sm" type="number" min='0' />
-                <span asp-validation-for="AnoPlantio" class="text-danger"></span>
+                <label class="form-label">Plantio</label>
+                <input asp-for="AnoPlantio" type="number" min='1' class="form-control form-control-sm" required />
+                <div class="invalid-feedback">Informe o ano do plantio.</div>
             </div>
             <div class="col-md-5">
-                <label class="control-label">Pés</label>
-                <input asp-for="QuantidadePes" class="form-control form-control-sm" type="number" min='0' />
-                <span asp-validation-for="QuantidadePes" class="text-danger"></span>
+                <label class="form-label">Pés</label>
+                <input asp-for="QuantidadePes" type="number" min='1' class="form-control form-control-sm" required />
+                <div class="invalid-feedback">Informe a quantidade de pés.</div>
             </div>
             <div class="col-md-6">
-                <label class="control-label">Contrato</label>
+                <label class="form-label">Contrato</label>
                 @if (Model.Id == 0) 
                 {
-                    <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato">
+                    <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" required>
                         <option value="" disabled selected>Selecione...</option>
                     </select>
+                    <div class="invalid-feedback">Informe o contrato.</div>
                 }
                 else 
                 {
-                    <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" disabled></select>
+                    <select asp-for="IdContrato" class="form-select form-select-sm" asp-items="ViewBag.IdContrato" disabled />
                 } 
             </div>            
             <div class="col-md-6">
-                <label class="control-label">Variedade</label>
-                <select asp-for="IdVariedade"  class="form-select form-select-sm" asp-items="ViewBag.IdVariedade">
+                <label class="form-label">Variedade</label>
+                <select asp-for="IdVariedade" class="form-select form-select-sm" asp-items="ViewBag.IdVariedade" required>
                     <option value="" disabled selected>Selecione...</option>
                 </select>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Salvar</button>
-                <a class="btn btn-outline-secondary btn-sm" asp-action="Index"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancelar</a>
+                <div class="invalid-feedback">Informe a variedade.</div>
             </div>
         </form>
+    </div>
+    <div class="footer-card-bottons-details">
+        <div class="col-md-12">
+            <button form="frmTalhao" type="submit" class="btn btn-orange btn-sm"><i class="fa-solid fa-square-check"></i>&nbsp;Salvar</button>
+            <a class="btn btn-outline-transparent btn-sm" asp-action="Index"><i class="fa-solid fa-ban"></i>&nbsp;Cancelar</a>
+        </div>
     </div>
 </div>
 

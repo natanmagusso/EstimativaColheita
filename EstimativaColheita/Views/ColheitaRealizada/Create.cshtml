@@ -6,11 +6,12 @@
 
 <div class="card">
     <div class="header-card">
-        &nbsp;&nbsp;Adicionar registro
+        &nbsp;&nbsp;Adicionar apontamento
     </div>
     <div class="body-card-create">
         <form id="frmApontamento" class="row g-3 needs-validation" novalidate asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <!--<div class="form-group">
                 <label asp-for="DataLancamento" class="control-label"></label>
                 <input asp-for="DataLancamento" class="form-control" />
@@ -18,7 +19,7 @@
             </div>-->
             <div class="col-md-2">
                 <label class="form-label">Caixas</label>
-                <input asp-for="Caixas" type="number" min='1' class="form-control form-control-sm" required />
+                <input asp-for="Caixas" type="number" min='1' class="form-control form-control-sm" required autofocus />
                 <div class="invalid-feedback">Caixas inválidas.</div>
             </div>
             <div class="col-md-10">

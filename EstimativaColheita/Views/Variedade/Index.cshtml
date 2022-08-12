@@ -24,24 +24,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model) {
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.CodigoInterno)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
-                        <td>
-                            @if (item.Ativo == true)
-                            {
+                        @if (item.Ativo == true)
+                        {
+                            <td class="black">@Html.DisplayFor(modelItem => item.CodigoInterno)</td>
+                            <td class="black">@Html.DisplayFor(modelItem => item.Descricao)</td>
+                            <td>
                                 <a class="btn btn-blue btn-sm" asp-action="CreateOrEdit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar variedade @item.Descricao"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a class="btn btn-red btn-sm" asp-action="Disable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Desabilitar variedade @item.Descricao"><i class="fa-solid fa-thumbs-down"></i></a>
-                                <a class="btn btn-green btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id"><i class="fa-solid fa-thumbs-up"></i></a>
-                            }
-                            else
-                            {
+                                <a class="btn btn-green btn-sm disabled" asp-action="Enable" asp-route-id="@item.Id"><i class="fa-solid fa-thumbs-up"></i></a>           
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="secondary">@Html.DisplayFor(modelItem => item.CodigoInterno)</td>
+                            <td class="secondary">@Html.DisplayFor(modelItem => item.Descricao)</td>
+                            <td>
                                 <a class="btn btn-blue btn-sm disabled" asp-action="CreateOrEdit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a class="btn btn-red btn-sm disabled" asp-action="Disable" asp-route-id="@item.Id"><i class="fa-solid fa-thumbs-down"></i></a>
                                 <a class="btn btn-green btn-sm" asp-action="Enable" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Habilitar variedade @item.Descricao"><i class="fa-solid fa-thumbs-up"></i></a>
-                            }           
-                        </td>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>

@@ -6,8 +6,8 @@
 
 <div class="card">
     <div class="header-card">
-        @if (Model.Id == 0) { <text>&nbsp;&nbsp;Adicionar registro</text> } 
-        else { <text>&nbsp;&nbsp;Editar registro</text> }
+        @if (Model.Id == 0) { <text>&nbsp;&nbsp;Adicionar motivo</text> } 
+        else { <text>&nbsp;&nbsp;Editar motivo</text> }
     </div>
     <div class="body-card-create">
         <form class="row g-3" asp-action="CreateOrEdit">
@@ -16,7 +16,7 @@
 
             <div class="col-md-12">
                 <label class="form-label">Descrição</label>
-                <input asp-for="Descricao" type="text" class="form-control form-control-sm" required />
+                <input asp-for="Descricao" type="text" class="form-control form-control-sm" required autofocus />
                 <div class="invalid-feedback">Informe a descrição.</div>
             </div>
         </form>

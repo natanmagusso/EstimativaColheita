@@ -6,8 +6,8 @@
 
 <div class="card">
     <div class="header-card">
-        @if (Model.Id == 0) { <text>&nbsp;&nbsp;Adicionar registro</text> } 
-        else { <text>&nbsp;&nbsp;Editar registro</text> }
+        @if (Model.Id == 0) { <text>&nbsp;&nbsp;Adicionar encarregado</text> } 
+        else { <text>&nbsp;&nbsp;Editar encarregado</text> }
     </div>
     <div class="body-card-create">
         <form id="frmEncarregado" class="row g-3 needs-validation" novalidate asp-action="CreateOrEdit">
@@ -18,7 +18,7 @@
                 <label class="form-label">Código</label>
                 @if (Model.Id == 0) 
                 {
-                    <input asp-for="CodigoInterno" type="number" min='1' class="form-control form-control-sm"  required />
+                    <input asp-for="CodigoInterno" type="number" min='1' class="form-control form-control-sm" required autofocus />
                     <div class="invalid-feedback">Código inválido.</div>
                 } 
                 else
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-7">
                 <label class="form-label">Nome</label>
-                <input asp-for="Nome" type="text" class="form-control form-control-sm" required />
+                <input asp-for="Nome" type="text" class="form-control form-control-sm" required autofocus />
                 <div class="invalid-feedback">Informe do nome.</div>
             </div>
             <div class="col-md-3">
